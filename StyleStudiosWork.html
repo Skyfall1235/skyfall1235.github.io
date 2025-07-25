@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style Studios Professional Work - Wyatt Murray</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for dark mode and Inter font */
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #1a202c; /* Dark background */
+            color: #e2e8f0; /* Light text color */
+        }
+        /* Custom scrollbar for a cleaner look in dark mode */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #2d3748;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4a5568;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header Section (simplified for project detail page) -->
+    <header class="bg-gray-800 shadow-sm py-4 rounded-b-lg">
+        <nav class="container mx-auto px-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-indigo-400 rounded-md p-2 hover:bg-gray-700 transition-colors">← Back to Portfolio</a>
+            <span class="text-xl font-semibold text-gray-300">Style Studios Work</span>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-16">
+        <article class="bg-gray-900 p-8 rounded-lg shadow-lg">
+            <h1 class="text-5xl font-extrabold text-center text-indigo-400 mb-8">Professional Work at Style Studios</h1>
+            <p class="text-lg text-gray-300 mb-8 max-w-3xl mx-auto text-center">
+                At Style Studios, I contributed to the development of creative and technically advanced multiplayer virtual reality games, focusing on maintaining a balance between innovation and stability.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-100 mb-4">Role & Responsibilities</h3>
+                    <ul class="list-disc list-inside text-lg text-gray-300 space-y-2">
+                        <li>Oversaw the integration of new features into existing game architecture.</li>
+                        <li>Mentored junior developers, providing hands-on learning and constructive feedback.</li>
+                        <li>Developed and maintained core game features ensuring high performance and responsiveness.</li>
+                        <li>Implemented networking solutions using Unity Netcode for GameObjects for seamless multiplayer.</li>
+                        <li>Enhanced performance through Unity ECS design, optimizing gameplay on Quest 2.</li>
+                        <li>Designed scalable inventory and item systems for diverse in-game assets.</li>
+                        <li>Created in-game tools for designers, streamlining scriptable object editing.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-100 mb-4">Key Technologies</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-indigo-700 text-indigo-200 text-lg font-medium px-4 py-1 rounded-full">Unity Engine</span>
+                        <span class="bg-indigo-700 text-indigo-200 text-lg font-medium px-4 py-1 rounded-full">C#</span>
+                        <span class="bg-indigo-700 text-indigo-200 text-lg font-medium px-4 py-1 rounded-full">Unity Netcode for GameObjects</span>
+                        <span class="bg-indigo-700 text-indigo-200 text-lg font-medium px-4 py-1 rounded-full">Unity ECS</span>
+                        <span class="bg-indigo-700 text-indigo-200 text-lg font-medium px-4 py-1 rounded-full">VR Development</span>
+                        <span class="bg-indigo-700 text-indigo-200 text-lg font-medium px-4 py-1 rounded-full">Performance Optimization</span>
+                        <span class="bg-indigo-700 text-indigo-200 text-lg font-medium px-4 py-1 rounded-full">Jira</span>
+                        <span class="bg-indigo-700 text-indigo-200 text-lg font-medium px-4 py-1 rounded-full">Git & GitHub</span>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-100 mt-8 mb-4">Project Highlights</h3>
+                    <p class="text-lg text-gray-300">
+                        My work significantly contributed to the studio's multiplayer VR titles, ensuring robust networking, high performance on target platforms like Quest 2, and efficient content pipelines for designers. I focused on creating modular and maintainable codebases to facilitate rapid iteration and feature expansion.
+                    </p>
+                </div>
+            </div>
+
+            <h3 class="text-3xl font-bold text-gray-100 mb-6 text-center">Visuals & Code Snippets</h3>
+
+            <!-- Image 1 -->
+            <div class="mb-8">
+                <img src="https://placehold.co/800x450/2d3748/e2e8f0?text=Style+Studios+Screenshot+1" alt="Style Studios Project Screenshot 1" class="w-full rounded-lg shadow-md mb-4">
+                <p class="text-center text-gray-400 text-sm">A screenshot demonstrating an in-game feature developed at Style Studios.</p>
+            </div>
+
+            <!-- Code Snippet 1: Unity Netcode Example -->
+            <h4 class="text-2xl font-semibold text-gray-200 mb-3">Code Snippet: Networked Player Movement</h4>
+            <pre class="bg-gray-700 text-gray-100 p-4 rounded-md overflow-x-auto text-base mb-8"><code>
+using UnityEngine;
+using Unity.Netcode;
+
+public class NetworkPlayerMovement : NetworkBehaviour
+{
+    public float moveSpeed = 5f;
+
+    void Update()
+    {
+        if (!IsOwner) return; // Only control your own player
+
+        // Example: Simple movement input
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        Vector3 moveDirection = new Vector3(horizontal, 0, vertical).normalized;
+        transform.position += moveDirection * moveSpeed * Time.deltaTime;
+
+        // If this were a real game, you'd likely send input to the server
+        // via a ServerRpc or use NetworkTransform.
+    }
+}
+            </code></pre>
+            <p class="text-center text-gray-400 text-sm mb-12">Example of a basic networked player movement script using Unity Netcode, ensuring only the owner controls their character.</p>
+
+            <!-- Image 2 -->
+            <div class="mb-8">
+                <img src="https://placehold.co/800x450/2d3748/e2e8f0?text=Style+Studios+Screenshot+2" alt="Style Studios Project Screenshot 2" class="w-full rounded-lg shadow-md mb-4">
+                <p class="text-center text-gray-400 text-sm">Another visual of a UI element or system implemented during development.</p>
+            </div>
+
+            <!-- Code Snippet 2: ECS Component Example -->
+            <h4 class="text-2xl font-semibold text-gray-200 mb-3">Code Snippet: ECS Health Component</h4>
+            <pre class="bg-gray-700 text-gray-100 p-4 rounded-md overflow-x-auto text-base mb-8"><code>
+using Unity.Entities;
+
+// Define a simple health component for ECS
+public struct HealthComponent : IComponentData
+{
+    public int Value;
+    public int MaxValue;
+}
+
+// Example of a system that might process health changes
+// public partial class HealthSystem : SystemBase
+// {
+//     protected override void OnUpdate()
+//     {
+//         // Iterate over entities with HealthComponent
+//         Entities.ForEach((ref HealthComponent health) =>
+//         {
+//             // Example: Regenerate health over time
+//             // health.Value = math.min(health.Value + 1, health.MaxValue);
+//         }).ScheduleParallel();
+//     }
+// }
+            </code></pre>
+            <p class="text-center text-gray-400 text-sm mb-12">Illustrates a basic Unity ECS component for managing entity health, a core part of performance optimization.</p>
+
+            <div class="text-center mt-12">
+                <a href="https://github.com/Skyfall1235" target="_blank" class="bg-indigo-600 text-white px-8 py-4 rounded-full text-xl font-semibold shadow-md hover:bg-indigo-700 transform hover:scale-105 transition-all duration-300 inline-flex items-center">
+                    View My GitHub Profile
+                    <svg class="ml-3 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-900 text-white py-8 mt-8 rounded-t-lg">
+        <div class="container mx-auto px-4 text-center text-gray-400">
+            <p>&copy; <span id="current-year-footer"></span> Wyatt Murray. All rights reserved.</p>
+            <p class="mt-2 text-sm">Designed with ❤️ using HTML, CSS (Tailwind CSS).</p>
+        </div>
+    </footer>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('current-year-footer').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

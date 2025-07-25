@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project VRS - Wyatt Murray</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for dark mode and Inter font */
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #1a202c; /* Dark background */
+            color: #e2e8f0; /* Light text color */
+        }
+        /* Custom scrollbar for a cleaner look in dark mode */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #2d3748;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4a5568;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header Section (simplified for project detail page) -->
+    <header class="bg-gray-800 shadow-sm py-4 rounded-b-lg">
+        <nav class="container mx-auto px-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-indigo-400 rounded-md p-2 hover:bg-gray-700 transition-colors">← Back to Portfolio</a>
+            <span class="text-xl font-semibold text-gray-300">Project VRS</span>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-16">
+        <article class="bg-gray-900 p-8 rounded-lg shadow-lg">
+            <h1 class="text-5xl font-extrabold text-center text-indigo-400 mb-8">Project VRS (VR Spacecraft Simulator)</h1>
+            <p class="text-lg text-gray-300 mb-8 max-w-3xl mx-auto text-center">
+                An independent project where I focused on developing advanced VR systems and engaging gameplay mechanics for a spacecraft simulator.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-100 mb-4">Project Overview & Features</h3>
+                    <ul class="list-disc list-inside text-lg text-gray-300 space-y-2">
+                        <li>Developed an immersive flight control system for VR spacecraft with comprehensive dual-joystick functionality.</li>
+                        <li>Implemented real-time management of subsystems like targeting and power delivery.</li>
+                        <li>Collaborated on a physics-simulated flight system with 3D controls for enhanced realism.</li>
+                        <li>Designed and implemented dynamic combat environments with waves of enemies, customizable missions, and unique factions.</li>
+                        <li>Integrated positional tracking turrets and missiles for improved accuracy and interactivity.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-100 mb-4">Skills & Technologies Applied</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-green-700 text-green-200 text-lg font-medium px-4 py-1 rounded-full">Unity Engine</span>
+                        <span class="bg-green-700 text-green-200 text-lg font-medium px-4 py-1 rounded-full">C#</span>
+                        <span class="bg-green-700 text-green-200 text-lg font-medium px-4 py-1 rounded-full">VR Development</span>
+                        <span class="bg-green-700 text-green-200 text-lg font-medium px-4 py-1 rounded-full">Game Physics (Rigidbody)</span>
+                        <span class="bg-green-700 text-green-200 text-lg font-medium px-4 py-1 rounded-full">Vector Math</span>
+                        <span class="bg-green-700 text-green-200 text-lg font-medium px-4 py-1 rounded-full">Event-Driven Programming</span>
+                        <span class="bg-green-700 text-green-200 text-lg font-medium px-4 py-1 rounded-full">Component Design</span>
+                        <span class="bg-green-700 text-green-200 text-lg font-medium px-4 py-1 rounded-full">Version Control (Git)</span>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-100 mt-8 mb-4">Learning & Growth</h3>
+                    <p class="text-lg text-gray-300">
+                        This project was a significant learning experience, allowing me to dive deep into complex game systems and VR interactions. It honed my problem-solving skills and my ability to work with advanced Unity features and mathematical concepts crucial for realistic simulations.
+                    </p>
+                </div>
+            </div>
+
+            <h3 class="text-3xl font-bold text-gray-100 mb-6 text-center">Visuals & Code Snippets</h3>
+
+            <!-- Image 1 -->
+            <div class="mb-8">
+                <img src="https://placehold.co/800x450/2d3748/e2e8f0?text=Project+VRS+Screenshot+1" alt="Project VRS Screenshot 1" class="w-full rounded-lg shadow-md mb-4">
+                <p class="text-center text-gray-400 text-sm">A screenshot of the VR spacecraft cockpit or in-game environment.</p>
+            </div>
+
+            <!-- Code Snippet 1: Flight Control Input -->
+            <h4 class="text-2xl font-semibold text-gray-200 mb-3">Code Snippet: VR Flight Input Processing</h4>
+            <pre class="bg-gray-700 text-gray-100 p-4 rounded-md overflow-x-auto text-base mb-8"><code>
+using UnityEngine;
+using UnityEngine.InputSystem; // Using new Input System
+
+public class VRFlightControls : MonoBehaviour
+{
+    public InputActionProperty leftStickInput;
+    public InputActionProperty rightStickInput;
+    public Rigidbody spacecraftRigidbody;
+    public float thrustMultiplier = 10f;
+    public float torqueMultiplier = 5f;
+
+    void OnEnable()
+    {
+        leftStickInput.Enable();
+        rightStickInput.Enable();
+    }
+
+    void OnDisable()
+    {
+        leftStickInput.Disable();
+        rightStickInput.Disable();
+    }
+
+    void FixedUpdate()
+    {
+        // Read input from VR controllers
+        Vector2 leftStick = leftStickInput.action.ReadValue&lt;Vector2&gt;();
+        Vector2 rightStick = rightStickInput.action.ReadValue&lt;Vector2&gt;();
+
+        // Apply thrust (example: forward/backward from right stick Y)
+        Vector3 thrust = transform.forward * rightStick.y * thrustMultiplier;
+        spacecraftRigidbody.AddForce(thrust, ForceMode.Acceleration);
+
+        // Apply torque (example: yaw from right stick X, pitch from left stick Y)
+        Vector3 torque = new Vector3(leftStick.y, rightStick.x, -leftStick.x) * torqueMultiplier;
+        spacecraftRigidbody.AddTorque(torque, ForceMode.Acceleration);
+    }
+}
+            </code></pre>
+            <p class="text-center text-gray-400 text-sm mb-12">An example C# script illustrating how VR joystick input is processed to control spacecraft movement and rotation using Unity's Rigidbody system.</p>
+
+            <!-- Image 2 -->
+            <div class="mb-8">
+                <img src="https://placehold.co/800x450/2d3748/e2e8f0?text=Project+VRS+Combat+Scene" alt="Project VRS Combat Scene" class="w-full rounded-lg shadow-md mb-4">
+                <p class="text-center text-gray-400 text-sm">A visual of a dynamic combat scenario or enemy faction design.</p>
+            </div>
+
+            <!-- Code Snippet 2: Enemy Wave Spawner -->
+            <h4 class="text-2xl font-semibold text-gray-200 mb-3">Code Snippet: Dynamic Enemy Wave Spawner</h4>
+            <pre class="bg-gray-700 text-gray-100 p-4 rounded-md overflow-x-auto text-base mb-8"><code>
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+public class EnemyWaveSpawner : MonoBehaviour
+{
+    public List&lt;GameObject&gt; enemyPrefabs;
+    public Transform[] spawnPoints;
+    public float timeBetweenWaves = 10f;
+    public int enemiesPerWave = 5;
+
+    private int currentWave = 0;
+
+    void Start()
+    {
+        StartCoroutine(SpawnWaves());
+    }
+
+    IEnumerator SpawnWaves()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(timeBetweenWaves);
+            currentWave++;
+            Debug.Log($"Starting Wave {currentWave}");
+
+            for (int i = 0; i &lt; enemiesPerWave; i++)
+            {
+                int enemyIndex = Random.Range(0, enemyPrefabs.Count);
+                int spawnPointIndex = Random.Range(0, spawnPoints.Length);
+                Instantiate(enemyPrefabs[enemyIndex], spawnPoints[spawnPointIndex].position, Quaternion.identity);
+                yield return new WaitForSeconds(0.5f); // Stagger enemy spawns
+            }
+        }
+    }
+}
+            </code></pre>
+            <p class="text-center text-gray-400 text-sm mb-12">Demonstrates a simple C# script for spawning waves of enemies at various points in the game environment, contributing to dynamic combat.</p>
+
+            <div class="text-center mt-12">
+                <a href="https://github.com/Skyfall1235/ProjectVRS" target="_blank" class="bg-indigo-600 text-white px-8 py-4 rounded-full text-xl font-semibold shadow-md hover:bg-indigo-700 transform hover:scale-105 transition-all duration-300 inline-flex items-center">
+                    View Project VRS on GitHub
+                    <svg class="ml-3 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-900 text-white py-8 mt-8 rounded-t-lg">
+        <div class="container mx-auto px-4 text-center text-gray-400">
+            <p>&copy; <span id="current-year-footer"></span> Wyatt Murray. All rights reserved.</p>
+            <p class="mt-2 text-sm">Designed with ❤️ using HTML, CSS (Tailwind CSS).</p>
+        </div>
+    </footer>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('current-year-footer').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
