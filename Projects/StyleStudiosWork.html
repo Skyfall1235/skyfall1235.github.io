@@ -38,7 +38,7 @@
     <!-- Header Section (simplified for project detail page) -->
     <header class="bg-gray-800 shadow-sm py-4 rounded-b-lg">
         <nav class="container mx-auto px-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-indigo-400 rounded-md p-2 hover:bg-gray-700 transition-colors">← Back to Portfolio</a>
+            <a href="../index.html" class="text-2xl font-bold text-indigo-400 rounded-md p-2 hover:bg-gray-700 transition-colors">← Back to Portfolio</a>
             <span class="text-xl font-semibold text-gray-300">Style Studios Work</span>
         </nav>
     </header>
@@ -77,7 +77,7 @@
                     </div>
                     <h3 class="text-3xl font-bold text-gray-100 mt-8 mb-4">Project Highlights</h3>
                     <p class="text-lg text-gray-300">
-                        My work significantly contributed to the studio's multiplayer VR titles, ensuring robust networking, high performance on target platforms like Quest 2, and efficient content pipelines for designers. I focused on creating modular and maintainable codebases to facilitate rapid iteration and feature expansion.
+                        My work significantly contributed to the studio's first multiplayer VR title, ensuring robust networking, high performance on target platforms like Quest 2, and efficient content pipelines for designers. I focused on creating modular and maintainable codebases to facilitate rapid iteration and feature expansion.
                     </p>
                 </div>
             </div>
@@ -86,71 +86,113 @@
 
             <!-- Image 1 -->
             <div class="mb-8">
-                <img src="https://placehold.co/800x450/2d3748/e2e8f0?text=Style+Studios+Screenshot+1" alt="Style Studios Project Screenshot 1" class="w-full rounded-lg shadow-md mb-4">
-                <p class="text-center text-gray-400 text-sm">A screenshot demonstrating an in-game feature developed at Style Studios.</p>
+                <img src="https://placehold.co/800x450/2d3748/e2e8f0?text=Placeholder+for+demo+video" alt="Style Studios Project Screenshot 1" class="w-full rounded-lg shadow-md mb-4">
+                <p class="text-center text-gray-400 text-sm">A brief video of The player inventory in action.</p>
             </div>
 
             <!-- Code Snippet 1: Unity Netcode Example -->
-            <h4 class="text-2xl font-semibold text-gray-200 mb-3">Code Snippet: Networked Player Movement</h4>
+            <h4 class="text-2xl font-semibold text-gray-200 mb-3">Code Snippet: Adding Items to Player Inventories</h4>
             <pre class="bg-gray-700 text-gray-100 p-4 rounded-md overflow-x-auto text-base mb-8"><code>
-using UnityEngine;
-using Unity.Netcode;
+        /// Attempts to add a specified count of a single item type to the inventory.
+        /// Prefers adding to an existing non-full stack. If no existing stack can take it,
+        /// attempts to create a new stack. Rejects items that cannot be placed.
 
-public class NetworkPlayerMovement : NetworkBehaviour
-{
-    public float moveSpeed = 5f;
-
-    void Update()
-    {
-        if (!IsOwner) return; // Only control your own player
-
-        // Example: Simple movement input
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-
-        Vector3 moveDirection = new Vector3(horizontal, 0, vertical).normalized;
-        transform.position += moveDirection * moveSpeed * Time.deltaTime;
-
-        // If this were a real game, you'd likely send input to the server
-        // via a ServerRpc or use NetworkTransform.
-    }
-}
+        /// param name="incomingEntry" An ItemEntry representing the items to add, including count and m_itemId.</param>
+        /// param name="rejectionCount" Outputs the number of items that could not be added.</param>
+        public void AddItem(ItemEntry incomingEntry, out int rejectionCount)
+        {
+            rejectionCount = 0;
+            //null check for sanity
+            if (incomingEntry == null || incomingEntry.ItemID == null || incomingEntry.StackCount <= 0)
+                return;
+            //stash local variables
+            int itemsRemainingToAdd = incomingEntry.StackCount;
+            var targetRef = incomingEntry.ItemID;
+            //find the stack if it exists
+            ItemEntry existingStack = null;
+            foreach (var itemInInventory in ItemInventory)
+            {
+                if (itemInInventory.ItemID == incomingEntry.ItemID)
+                {
+                    existingStack = itemInInventory;
+                    break; // Found the stack, since there should only be one.
+                }
+            }
+            //if the stack exists and isnt full yet, we populate
+            if (existingStack != null)
+            {
+                //logic for populating an existing stack
+                rejectionCount = AddItemsToStackIfPossible(itemsRemainingToAdd,ref existingStack);
+            }
+            else
+            {
+                //stack doesnt exist, so we make it
+                ItemEntry newEntry = new(incomingEntry.ItemID, m_maxStackSize, false);
+                rejectionCount = AddItemsToStackIfPossible(itemsRemainingToAdd,ref newEntry);
+                ItemInventory.Add(newEntry);
+            }
+        }
             </code></pre>
-            <p class="text-center text-gray-400 text-sm mb-12">Example of a basic networked player movement script using Unity Netcode, ensuring only the owner controls their character.</p>
+            <p class="text-center text-gray-400 text-sm mb-12">Example of how I designed adding items to player or server inventories.</p>
 
             <!-- Image 2 -->
             <div class="mb-8">
-                <img src="https://placehold.co/800x450/2d3748/e2e8f0?text=Style+Studios+Screenshot+2" alt="Style Studios Project Screenshot 2" class="w-full rounded-lg shadow-md mb-4">
-                <p class="text-center text-gray-400 text-sm">Another visual of a UI element or system implemented during development.</p>
+                <img src="../images\ICKMenu.png" alt="Style Studios Project Screenshot 2" class="w-full rounded-lg shadow-md mb-4">
+                <p class="text-center text-gray-400 text-sm">Custom Window designed to fastrack bulk creation and organisation of items. This tool generates the prefabs, saves them in a folder, and loads them into our item singleton and network prefab list.</p>
             </div>
 
             <!-- Code Snippet 2: ECS Component Example -->
-            <h4 class="text-2xl font-semibold text-gray-200 mb-3">Code Snippet: ECS Health Component</h4>
+            <h4 class="text-2xl font-semibold text-gray-200 mb-3">Code Snippet: Item Creation Toolkit Prefab generation</h4>
             <pre class="bg-gray-700 text-gray-100 p-4 rounded-md overflow-x-auto text-base mb-8"><code>
-using Unity.Entities;
+    /// Generates or updates a prefab for a given ItemEntity_SO.
 
-// Define a simple health component for ECS
-public struct HealthComponent : IComponentData
-{
-    public int Value;
-    public int MaxValue;
-}
-
-// Example of a system that might process health changes
-// public partial class HealthSystem : SystemBase
-// {
-//     protected override void OnUpdate()
-//     {
-//         // Iterate over entities with HealthComponent
-//         Entities.ForEach((ref HealthComponent health) =>
-//         {
-//             // Example: Regenerate health over time
-//             // health.Value = math.min(health.Value + 1, health.MaxValue);
-//         }).ScheduleParallel();
-//     }
-// }
+    /// param name="itemSO">The ItemEntity_SO to generate a prefab for.</param>
+    /// param name="forceOverwrite">If true, overwrites an existing prefab without prompting.</param>
+    private void GeneratePrefabForSO(ItemEntity_SO itemSO, bool forceOverwrite)
+    {
+        if (itemSO.MetaData == null || string.IsNullOrEmpty(itemSO.MetaData.Name))
+        {
+            Debug.LogError($"Cannot generate prefab for '{itemSO.name}'. MetaData or MetaData.Name is missing.");
+            return;
+        }
+        string prefabName = itemSO.MetaData.Name;
+        string prefabPath = GetPrefabPath(itemSO);
+        // Ensure the directory exists
+        string directory = Path.GetDirectoryName(prefabPath);
+        if (!Directory.Exists(directory))
+        {
+            Debug.LogError("The prefab path directory does not exist.");
+            return;
+        }
+        GameObject existingPrefab = AssetDatabase.LoadAssetAtPath< GameObject>(prefabPath);
+        if (existingPrefab != null && !forceOverwrite)
+        {
+            // This case should ideally be handled by the calling method's logic (e.g., GenerateSelectedPrefabs)
+            // but included for robustness if this method is called directly.
+            Debug.Log($"Skipping prefab generation for '{prefabName}' as it already exists and forceOverwrite is false.");
+            return;
+        }
+        // Create the base GameObject using your static method
+        GameObject baseObject = ItemCreation.CreateBaseItemEntity(itemSO);
+        // Save it as a prefab
+        GameObject newPrefab = PrefabUtility.SaveAsPrefabAssetAndConnect(baseObject, prefabPath, InteractionMode.UserAction);
+        // Clean up the temporary GameObject created in the scene
+        DestroyImmediate(baseObject);
+        if (newPrefab != null)
+        {
+            Debug.Log($"Successfully generated/updated prefab for '{prefabName}' at: {prefabPath}");
+            // Mark the ItemEntity_SO as dirty so Unity saves changes if any were made during creation
+            EditorUtility.SetDirty(itemSO);
+        }
+        else
+        {
+            Debug.LogError($"Failed to generate prefab for '{prefabName}'.");
+        }
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+    }
             </code></pre>
-            <p class="text-center text-gray-400 text-sm mb-12">Illustrates a basic Unity ECS component for managing entity health, a core part of performance optimization.</p>
+            <p class="text-center text-gray-400 text-sm mb-12">Illustrates how the prefab instance is generated within the toolkit saved and stored within the item system I devised.</p>
 
             <div class="text-center mt-12">
                 <a href="https://github.com/Skyfall1235" target="_blank" class="bg-indigo-600 text-white px-8 py-4 rounded-full text-xl font-semibold shadow-md hover:bg-indigo-700 transform hover:scale-105 transition-all duration-300 inline-flex items-center">
