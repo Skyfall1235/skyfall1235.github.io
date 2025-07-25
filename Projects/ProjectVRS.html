@@ -80,7 +80,7 @@
                 </div>
             </div>
 
-            <h3 class="text-3xl font-bold text-gray-100 mb-6 text-center">Visuals & Code Snippets</h3>
+            <h3 class="text-3xl font-bold text-gray-100 mb-6 text-center">Visuals & Code Snippets (this section is not finished)</h3>
 
             <!-- Image 1 -->
             <div class="mb-8">
@@ -91,44 +91,7 @@
             <!-- Code Snippet 1: Flight Control Input -->
             <h4 class="text-2xl font-semibold text-gray-200 mb-3">Code Snippet: VR Flight Input Processing</h4>
             <pre class="bg-gray-700 text-gray-100 p-4 rounded-md overflow-x-auto text-base mb-8"><code>
-using UnityEngine;
-using UnityEngine.InputSystem; // Using new Input System
-
-public class VRFlightControls : MonoBehaviour
-{
-    public InputActionProperty leftStickInput;
-    public InputActionProperty rightStickInput;
-    public Rigidbody spacecraftRigidbody;
-    public float thrustMultiplier = 10f;
-    public float torqueMultiplier = 5f;
-
-    void OnEnable()
-    {
-        leftStickInput.Enable();
-        rightStickInput.Enable();
-    }
-
-    void OnDisable()
-    {
-        leftStickInput.Disable();
-        rightStickInput.Disable();
-    }
-
-    void FixedUpdate()
-    {
-        // Read input from VR controllers
-        Vector2 leftStick = leftStickInput.action.ReadValue&lt;Vector2&gt;();
-        Vector2 rightStick = rightStickInput.action.ReadValue&lt;Vector2&gt;();
-
-        // Apply thrust (example: forward/backward from right stick Y)
-        Vector3 thrust = transform.forward * rightStick.y * thrustMultiplier;
-        spacecraftRigidbody.AddForce(thrust, ForceMode.Acceleration);
-
-        // Apply torque (example: yaw from right stick X, pitch from left stick Y)
-        Vector3 torque = new Vector3(leftStick.y, rightStick.x, -leftStick.x) * torqueMultiplier;
-        spacecraftRigidbody.AddTorque(torque, ForceMode.Acceleration);
-    }
-}
+INSERT CODE HERE
             </code></pre>
             <p class="text-center text-gray-400 text-sm mb-12">An example C# script illustrating how VR joystick input is processed to control spacecraft movement and rotation using Unity's Rigidbody system.</p>
 
@@ -141,47 +104,12 @@ public class VRFlightControls : MonoBehaviour
             <!-- Code Snippet 2: Enemy Wave Spawner -->
             <h4 class="text-2xl font-semibold text-gray-200 mb-3">Code Snippet: Dynamic Enemy Wave Spawner</h4>
             <pre class="bg-gray-700 text-gray-100 p-4 rounded-md overflow-x-auto text-base mb-8"><code>
-using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-
-public class EnemyWaveSpawner : MonoBehaviour
-{
-    public List&lt;GameObject&gt; enemyPrefabs;
-    public Transform[] spawnPoints;
-    public float timeBetweenWaves = 10f;
-    public int enemiesPerWave = 5;
-
-    private int currentWave = 0;
-
-    void Start()
-    {
-        StartCoroutine(SpawnWaves());
-    }
-
-    IEnumerator SpawnWaves()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(timeBetweenWaves);
-            currentWave++;
-            Debug.Log($"Starting Wave {currentWave}");
-
-            for (int i = 0; i &lt; enemiesPerWave; i++)
-            {
-                int enemyIndex = Random.Range(0, enemyPrefabs.Count);
-                int spawnPointIndex = Random.Range(0, spawnPoints.Length);
-                Instantiate(enemyPrefabs[enemyIndex], spawnPoints[spawnPointIndex].position, Quaternion.identity);
-                yield return new WaitForSeconds(0.5f); // Stagger enemy spawns
-            }
-        }
-    }
-}
+INSERT CODE HERE
             </code></pre>
             <p class="text-center text-gray-400 text-sm mb-12">Demonstrates a simple C# script for spawning waves of enemies at various points in the game environment, contributing to dynamic combat.</p>
 
             <div class="text-center mt-12">
-                <a href="https://github.com/Skyfall1235/ProjectVRS" target="_blank" class="bg-indigo-600 text-white px-8 py-4 rounded-full text-xl font-semibold shadow-md hover:bg-indigo-700 transform hover:scale-105 transition-all duration-300 inline-flex items-center">
+                <a href="https://github.com/Skyfall1235/VR-Spaceship-Game" target="_blank" class="bg-indigo-600 text-white px-8 py-4 rounded-full text-xl font-semibold shadow-md hover:bg-indigo-700 transform hover:scale-105 transition-all duration-300 inline-flex items-center">
                     View Project VRS on GitHub
                     <svg class="ml-3 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                 </a>
