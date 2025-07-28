@@ -18,7 +18,8 @@
         }
         /* Custom scrollbar for a cleaner look in dark mode */
         ::-webkit-scrollbar {
-            width: 8px;
+            height: 8px; /* For horizontal scrollbar */
+            width: 8px; /* For vertical scrollbar */
         }
         ::-webkit-scrollbar-track {
             background: #2d3748;
@@ -30,6 +31,13 @@
         }
         ::-webkit-scrollbar-thumb:hover {
             background: #64748b;
+        }
+        /* Ensure images within the scroll container don't wrap */
+        .scroll-container img {
+            display: inline-block;
+            vertical-align: top; /* Align images at the top */
+            white-space: normal; /* Allow text wrapping within captions if needed */
+            cursor: pointer; /* Indicate clickable images */
         }
     </style>
 </head>
@@ -81,19 +89,107 @@
                 </div>
             </div>
 
-            <h3 class="text-3xl font-bold text-gray-100 mb-6 text-center">Visuals</h3>
+            <h3 class="text-3xl font-bold text-gray-100 mb-6 text-center">Visuals & Code Snippets</h3>
 
-            <!-- Image 1 -->
-            <div class="mb-8">
-                <img src="../images\RIPOFF.png" alt="1 Week Tanks Screenshot 1" class="w-full rounded-lg shadow-md mb-4">
-                <p class="text-center text-gray-400 text-sm">A screenshot of the main menu.</p>
+            <!-- Scrollable Image Gallery for 1 Week Tanks -->
+            <div class="overflow-x-auto whitespace-nowrap scroll-container pb-4 mb-4 rounded-lg shadow-md bg-gray-800 p-2">
+                <img src="../images\RIPOFF.png" alt="1 Week Tanks Screenshot 1" class="inline-block w-full md:w-1/2 lg:w-1/3 px-2 rounded-lg">
+                <img src="../images\1wtShot.png" alt="1 Week Tanks Screenshot 2" class="inline-block w-full md:w-1/2 lg:w-1/3 px-2 rounded-lg">
+                <img src="../images\1wtKillFeed.png" alt="1 Week Tanks Screenshot 3" class="inline-block w-full md:w-1/2 lg:w-1/3 px-2 rounded-lg">
             </div>
+            <p class="text-center text-gray-400 text-sm mb-8">A collection of screenshots showcasing various aspects of the "1 Week Tanks" project. Scroll to view all images.</p>
 
-            <!-- Image 2 -->
-            <div class="mb-8">
-                <img src="../images\1wtShot.png" alt="1 Week Tanks Screenshot 2" class="w-full rounded-lg shadow-md mb-4">
-                <p class="text-center text-gray-400 text-sm">Tank Firing in a peer hosted server with projectile VFX.</p>
-            </div>
+            <!-- New Code Snippet: DeathFeed -->
+            <h4 class="text-2xl font-semibold text-gray-200 mb-3">Code Snippet: DeathFeed (Kill Feed System)</h4>
+            <pre class="bg-gray-700 text-gray-100 p-4 rounded-md overflow-x-auto text-base mb-4"><code>
+public class DeathFeed : NetworkBehaviour
+{
+    [SerializeField]
+    GameObject canvas;
+
+    [SerializeField]
+    GameObject KillFeedPrefab;
+
+    [SerializeField]
+    LobbyPlayerHandler playerHandler;
+
+    [SerializeField]
+    float feedItemDestroyDelay = 10f;
+
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
+        canvas = GameObject.FindGameObjectWithTag("KillFeed");
+    }
+
+    public void UpdateStack(KillData incomingData)
+    {
+        //move the items upward to the next place
+        //create the object, and place it as a child at the bottom. set it to destroy after a period.
+        GameObject newItem = CreateKillFeedObject(incomingData);
+        newItem.transform.SetParent(canvas.transform, false); //set the parent and let the layout do the rest
+        StartCoroutine(DestroyFeedItemAfterDelay(newItem));
+    }
+
+    IEnumerator DestroyFeedItemAfterDelay(GameObject objectToDestroy)
+    {
+        yield return new WaitForSeconds(feedItemDestroyDelay);
+        GameObject.Destroy(objectToDestroy); //i specify cause original said obj not GO
+    }
+
+    //struct to contain info about a kill feed
+    public struct KillFeedItem
+    {
+        public string Killer;
+        public string Victim;
+        public GameObject KillFeedObject;
+
+        public KillFeedItem(string killer, string victim, GameObject killFeedObject)
+        {
+            Killer = killer;
+            Victim = victim;
+            KillFeedObject = killFeedObject;
+        }
+    }
+
+    /// &lt;summary&gt;
+    /// Creates a kill feed object and populates both is varaibles and its prefab with the incoming data needed to display.
+    /// &lt;/summary&gt;
+    /// &lt;param name="incomingData"&gt; incoming &lt;see cref="KillData"/&gt; struct from the &lt;seealso cref="KillTracker"/&gt;&lt;/param&gt;
+    /// &lt;returns&gt;A kill feed item to be used in the vertical layout group.&lt;/returns&gt;
+    public GameObject CreateKillFeedObject(KillData incomingData)
+    {
+        //setup prefab
+        GameObject kfObject = Instantiate(KillFeedPrefab);
+        Transform parentOfTexts = kfObject.transform.GetChild(0);
+        TMP_Text killerTitle = parentOfTexts.GetChild(0).GetComponent&lt;TMP_Text&gt;();
+        TMP_Text victimTitle = parentOfTexts.GetChild(1).GetComponent&lt;TMP_Text&gt;();
+        Debug.Log("killdata");
+
+        //getting strings from the dictionary
+        FixedString32Bytes killerUserName = new();
+        killerUserName = playerHandler.LocateUsernameFromID(incomingData.inflictor);
+        FixedString32Bytes victimUserName = new();
+        victimUserName = playerHandler.LocateUsernameFromID(incomingData.inflictee);
+
+        //converting fixed strings to strings
+        string killerUser = killerUserName.ToString();
+        string victimUser = victimUserName.ToString();
+        Debug.Log(victimUser + " is the victim");
+
+        //setting text of prefab
+        killerTitle.text = killerUser;
+        victimTitle.text = victimUser;
+
+        //create the prefab
+        
+        return kfObject;
+    }
+}
+            </code></pre>
+            <p class="text-center text-gray-400 text-sm mb-12">
+                This C# script manages the in-game kill feed for "1 Week Tanks". The script dynamically creates and displays kill feed messages, showing who eliminated whom, and automatically removes them after a set delay.
+            </p>
 
             <div class="text-center mt-12">
                 <a href="https://github.com/Skyfall1235/1weekTanks" target="_blank" class="bg-indigo-600 text-white px-8 py-4 rounded-full text-xl font-semibold shadow-md hover:bg-indigo-700 transform hover:scale-105 transition-all duration-300 inline-flex items-center">
@@ -103,6 +199,12 @@
             </div>
         </article>
     </main>
+
+    <!-- Image Modal (Lightbox) -->
+    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+        <button id="closeModal" class="absolute top-4 right-4 text-white text-3xl font-bold p-2 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors">&times;</button>
+        <img id="modalImage" class="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-xl" src="" alt="Zoomed Image">
+    </div>
 
     <!-- Footer Section -->
     <footer class="bg-gray-900 text-white py-8 mt-8 rounded-t-lg">
@@ -115,6 +217,43 @@
     <script>
         // Set current year in footer
         document.getElementById('current-year-footer').textContent = new Date().getFullYear();
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Image Modal Logic
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const closeModalButton = document.getElementById('closeModal');
+        const galleryImages = document.querySelectorAll('.scroll-container img');
+
+        galleryImages.forEach(image => {
+            image.addEventListener('click', () => {
+                modalImage.src = image.src; // Set the modal image source to the clicked image's source
+                imageModal.classList.remove('hidden'); // Show the modal
+                document.body.style.overflow = 'hidden'; // Prevent scrolling on the body
+            });
+        });
+
+        closeModalButton.addEventListener('click', () => {
+            imageModal.classList.add('hidden'); // Hide the modal
+            document.body.style.overflow = ''; // Restore body scrolling
+        });
+
+        // Close modal if clicking outside the image (on the semi-transparent background)
+        imageModal.addEventListener('click', (event) => {
+            if (event.target === imageModal) {
+                imageModal.classList.add('hidden'); // Hide the modal
+                document.body.style.overflow = ''; // Restore body scrolling
+            }
+        });
     </script>
 </body>
 </html>
