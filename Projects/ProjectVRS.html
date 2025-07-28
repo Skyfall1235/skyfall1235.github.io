@@ -18,7 +18,8 @@
         }
         /* Custom scrollbar for a cleaner look in dark mode */
         ::-webkit-scrollbar {
-            width: 8px;
+            height: 8px; /* For horizontal scrollbar */
+            width: 8px; /* For vertical scrollbar */
         }
         ::-webkit-scrollbar-track {
             background: #2d3748;
@@ -30,6 +31,12 @@
         }
         ::-webkit-scrollbar-thumb:hover {
             background: #64748b;
+        }
+        /* Ensure images within the scroll container don't wrap */
+        .scroll-container img {
+            display: inline-block;
+            vertical-align: top; /* Align images at the top */
+            white-space: normal; /* Allow text wrapping within captions if needed */
         }
     </style>
 </head>
@@ -80,20 +87,159 @@
                 </div>
             </div>
 
-            <h3 class="text-3xl font-bold text-gray-100 mb-6 text-center">Visuals & Code Snippets (this section is not finished)</h3>
+            <h3 class="text-3xl font-bold text-gray-100 mb-6 text-center">Visuals & Code Snippets</h3>
 
             <!-- Image 1 -->
-            <div class="mb-8">
-                <img src="https://placehold.co/800x450/2d3748/e2e8f0?text=Project+VRS+Screenshot+1" alt="Project VRS Screenshot 1" class="w-full rounded-lg shadow-md mb-4">
-                <p class="text-center text-gray-400 text-sm">A screenshot of the VR spacecraft cockpit or in-game environment.</p>
+            <div class="overflow-x-auto whitespace-nowrap scroll-container pb-4 mb-4 rounded-lg shadow-md bg-gray-800 p-2">
+                <img src="../images\VRS Joystick.png" alt="VRS Joystick" class="inline-block w-full md:w-1/2 lg:w-1/3 px-2 rounded-lg">
+                <img src="../images\VRS progression.png" alt="VRS Progression" class="inline-block w-full md:w-1/2 lg:w-1/3 px-2 rounded-lg">
+                <img src="../images\Weapon Manager VRS.png" alt="Weapon Manager VRS" class="inline-block w-full md:w-1/2 lg:w-1/3 px-2 rounded-lg">
             </div>
+            <p class="text-center text-gray-400 text-sm mb-8">A collection of screenshots showcasing the VR joystick, development progression, and the weapon manager interface within Project VRS. Scroll to view all images.</p>
 
             <!-- Code Snippet 1: Flight Control Input -->
-            <h4 class="text-2xl font-semibold text-gray-200 mb-3">Code Snippet: VR Flight Input Processing</h4>
+            <h4 class="text-2xl font-semibold text-gray-200 mb-3">Code Snippet: VR Flight Movement Code</h4>
             <pre class="bg-gray-700 text-gray-100 p-4 rounded-md overflow-x-auto text-base mb-8"><code>
-INSERT CODE HERE
+public class IM_ShipMovementController : BC_ShipMovementController
+{
+    //magic numbers for remapping the vector inputs
+    const float m_lowerJoystickInputBounds = -1f;
+    const float m_upperJoystickInputBounds = 1f;
+
+    //continously applied vectors that change upon setting values for the inputs
+    protected Vector3 m_savedForwardVector;
+
+    protected Vector3 m_savedPitchAxis;
+    protected float m_savedPitchSpeed;
+
+    protected Vector3 m_savedRollAxis;
+    protected float m_savedRollSpeed;
+
+    protected Vector3 m_savedStrafeVector;
+
+    protected Vector3 m_savedYawAxis;
+    protected float m_savedYawSpeed;
+
+    protected bool m_toggleYawForStrafe;
+
+    protected float m_brakingForce;
+
+
+    protected virtual void FixedUpdate()
+    {
+        //this will apply all current inputs
+        ApplyAllCurrentForces();
+    }
+
+    private void ApplyAllCurrentForces()
+    {
+        //linear motion
+        ApplyLinearMotionValue(m_savedForwardVector);
+
+        //roll and pitch rotations
+        ApplyRotationOnAxis(m_savedPitchAxis, m_savedPitchSpeed);
+        ApplyRotationOnAxis(m_savedRollAxis, m_savedRollSpeed);
+
+        //apply strafe movement
+        ApplyStrafe(m_savedStrafeVector);
+
+        //yaw rotations
+        ApplyRotationOnAxis(m_savedYawAxis, m_savedYawSpeed);
+
+        //finally, prevent the speed from breaching the speed cap
+        ClampVelocityToMaxSpeed();
+    }
+
+    protected void SaveNewLinearMotionVector(float rawThrottleInput)
+    {
+        //remap the joystick value
+        float appliedThrustValue = ExtensionMethods.Remap(rawThrottleInput,        // Value to modify
+                                        m_lowerJoystickInputBounds, // Lower original bound
+                                        m_upperJoystickInputBounds, // Upper original bound
+                                        m_maxDeceleration,          // Lower new bound
+                                        m_maxAcceleration);         // Upper new bound
+
+        //create a forward vector of the speed we want to move
+        Vector3 forwardVector = new Vector3(0f, 0f, appliedThrustValue);
+
+        //save the value
+        m_savedForwardVector = forwardVector;
+    }
+
+    protected void SaveNewRotationOnAxis(ShipJoystickInput currentInput)
+    {
+        //ADD-RELATIVE-TORQUE ROTATES THE BODY CLOCKWISE AROUND THE AXIS (if it is counter clockwise your visualization is upside down)
+
+        //remap the joystick values
+        float newPitchRotationSpeed = currentInput.PrimaryFlightStick.y * m_maxRateOfPitch;
+
+        float newRollRotationSpeed = currentInput.PrimaryFlightStick.x * m_maxRateOfRoll;
+
+        float newYawRotationSpeed = currentInput.PrimaryYawValue * m_maxRateOfYaw;
+
+
+        //since the axis is a normalized vector we can just multiply it to get our torque value
+        Vector3 pitchTorqueVector = ReturnTorqueVector(newPitchRotationSpeed, Vector3.left);
+        Vector3 pitchAxisWithMappedSpeed = -pitchTorqueVector * Mathf.Abs(newPitchRotationSpeed);
+
+        Vector3 rollTorqueVector = ReturnTorqueVector(newRollRotationSpeed, Vector3.forward);
+        Vector3 rollAxisWithMappedSpeed = -rollTorqueVector * Mathf.Abs(newRollRotationSpeed);
+
+        //Yaw ONLY
+        //determine the direction based on the torque roation
+        Vector3 yawTorqueVector = ReturnTorqueVector(currentInput.PrimaryYawValue, Vector3.up);
+        
+        //set the vector to be the speed of the rotation
+        Vector3 yawAxisWithMappedSpeed = yawTorqueVector * Mathf.Abs(newYawRotationSpeed);
+
+    //Saving
+
+        //save Pitch
+        m_savedPitchAxis = pitchAxisWithMappedSpeed;
+        m_savedPitchSpeed = newPitchRotationSpeed;
+
+        // and roll
+        m_savedRollAxis = rollAxisWithMappedSpeed;
+        m_savedRollSpeed = newRollRotationSpeed;
+
+        //save yaw
+        m_savedYawAxis = yawAxisWithMappedSpeed;
+        m_savedYawSpeed = newYawRotationSpeed;
+    }
+
+    protected void SaveNewStrafeVector(float rawYawInput)
+    {
+        //remap the joystick value
+        float appliedYawValue = ExtensionMethods.Remap(rawYawInput,                // Value to modify  
+                                      m_lowerJoystickInputBounds, // Lower original bound
+                                      m_upperJoystickInputBounds, // Upper original bound
+                                      -m_maxStrafeSpeed,          // Lower new bound
+                                      m_maxStrafeSpeed);          // Upper new bound
+
+        //set the vector for the strafe to the speed of the strafe value
+        Vector3 strafeVector = new Vector3(appliedYawValue, 0f, 0f);
+
+        //save the values
+        m_savedStrafeVector = strafeVector;
+    }
+
+    protected Vector3 ReturnTorqueVector(float input, Vector3 AxiOfRotation)
+    {
+        if (input > 0f)
+        {
+            return AxiOfRotation;
+        }
+        else if (input < 0f)
+        {
+            return -AxiOfRotation;
+        }
+        else return Vector3.zero;
+    }
+}
             </code></pre>
-            <p class="text-center text-gray-400 text-sm mb-12">An example C# script illustrating how VR joystick input is processed to control spacecraft movement and rotation using Unity's Rigidbody system.</p>
+            <p class="text-center text-gray-400 text-sm mb-12"> 
+                This is part of the code that handles tranaslations from virtual joysticks to Ship movement and rotation.
+                It highlights the precise handling of player inputs and their translation into dynamic ship movements within the physics-driven environment.</p>
 
             <!-- Image 2 -->
             <div class="mb-8">
@@ -102,11 +248,72 @@ INSERT CODE HERE
             </div>
 
             <!-- Code Snippet 2: Enemy Wave Spawner -->
-            <h4 class="text-2xl font-semibold text-gray-200 mb-3">Code Snippet: Dynamic Enemy Wave Spawner</h4>
+            <h4 class="text-2xl font-semibold text-gray-200 mb-3">Code Snippet: Ship Module State Management </h4>
             <pre class="bg-gray-700 text-gray-100 p-4 rounded-md overflow-x-auto text-base mb-8"><code>
-INSERT CODE HERE
+ IEnumerator StartUpRoutine()
+ {
+     //do any logic before the module turns on
+     PreStartUpLogic();
+
+     //set as preparing for both the core module state and the operational state
+     m_operationalState = ICoreModule.ModuleOperationalState.Preparing;
+     OnModuleOperationalStateChange.Invoke(m_operationalState, this, ICoreModule.ModuleStateChangeType.OperationalState);
+
+     m_coreState = ICoreModule.CoreModuleState.Disabled;
+     OnCoreModuleStateChange.Invoke(m_coreState, this, ICoreModule.ModuleStateChangeType.CoreState);
+
+     //wait
+     yield return new WaitForSeconds(m_startUpDelay);
+
+     //do post start up logic
+     PostStartUpLogic();
+
+     m_coreState = ICoreModule.CoreModuleState.Operational;
+     OnCoreModuleStateChange.Invoke(m_coreState, this, ICoreModule.ModuleStateChangeType.CoreState);
+
+     m_operationalState = ICoreModule.ModuleOperationalState.Active;
+     OnModuleOperationalStateChange.Invoke(m_operationalState, this, ICoreModule.ModuleStateChangeType.OperationalState);
+ }
+
+ IEnumerator ShutDownRoutine(bool isRebooting)
+ {
+     //logic before the shut down
+     PreShutDownLogic();
+
+     //set as preparing for both the core module state and the operational state
+     m_operationalState = ICoreModule.ModuleOperationalState.Preparing;
+     OnModuleOperationalStateChange.Invoke(m_operationalState, this, ICoreModule.ModuleStateChangeType.OperationalState);
+
+     m_coreState = ICoreModule.CoreModuleState.Standby;
+     OnCoreModuleStateChange.Invoke(m_coreState, this, ICoreModule.ModuleStateChangeType.CoreState);
+
+     //wait
+     yield return new WaitForSeconds(m_shutDownDelay);
+
+     //call post process logic
+     PostShutDownLogic();
+
+     m_coreState = ICoreModule.CoreModuleState.Disabled;
+     OnCoreModuleStateChange.Invoke(m_coreState, this, ICoreModule.ModuleStateChangeType.CoreState);
+
+     //reboot notifiers
+     if (isRebooting)
+     {
+         m_operationalState = ICoreModule.ModuleOperationalState.Rebooting;
+         OnModuleOperationalStateChange.Invoke(m_operationalState, this, ICoreModule.ModuleStateChangeType.OperationalState);
+     }
+ }
+
+ IEnumerator RebootRoutine()
+ {
+     //shutdowm then start up
+     StartCoroutine(ShutDownRoutine(true));
+     yield return new WaitForSeconds(m_rebootDelay);
+     StartCoroutine(StartUpRoutine());
+ }
             </code></pre>
-            <p class="text-center text-gray-400 text-sm mb-12">Demonstrates a simple C# script for spawning waves of enemies at various points in the game environment, contributing to dynamic combat.</p>
+            <p class="text-center text-gray-400 text-sm mb-12">This code snippet illustrates the event-driven state management for a ship module within Project VRS. 
+                It defines coroutines for handling the module's startup, shutdown, and reboot sequences, including delays and notifications for state changes, crucial for managing complex ship systems.</p>
 
             <div class="text-center mt-12">
                 <a href="https://github.com/Skyfall1235/VR-Spaceship-Game" target="_blank" class="bg-indigo-600 text-white px-8 py-4 rounded-full text-xl font-semibold shadow-md hover:bg-indigo-700 transform hover:scale-105 transition-all duration-300 inline-flex items-center">
@@ -117,6 +324,12 @@ INSERT CODE HERE
         </article>
     </main>
 
+    <!-- Image Modal (Lightbox) -->
+    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+        <button id="closeModal" class="absolute top-4 right-4 text-white text-3xl font-bold p-2 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors">&times;</button>
+        <img id="modalImage" class="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-xl" src="" alt="Zoomed Image">
+    </div>
+    
     <!-- Footer Section -->
     <footer class="bg-gray-900 text-white py-8 mt-8 rounded-t-lg">
         <div class="container mx-auto px-4 text-center text-gray-400">
@@ -125,9 +338,46 @@ INSERT CODE HERE
         </div>
     </footer>
 
-    <script>
+     <script>
         // Set current year in footer
         document.getElementById('current-year-footer').textContent = new Date().getFullYear();
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Image Modal Logic
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const closeModalButton = document.getElementById('closeModal');
+        const galleryImages = document.querySelectorAll('.scroll-container img');
+
+        galleryImages.forEach(image => {
+            image.addEventListener('click', () => {
+                modalImage.src = image.src; // Set the modal image source to the clicked image's source
+                imageModal.classList.remove('hidden'); // Show the modal
+                document.body.style.overflow = 'hidden'; // Prevent scrolling on the body
+            });
+        });
+
+        closeModalButton.addEventListener('click', () => {
+            imageModal.classList.add('hidden'); // Hide the modal
+            document.body.style.overflow = ''; // Restore body scrolling
+        });
+
+        // Close modal if clicking outside the image (on the semi-transparent background)
+        imageModal.addEventListener('click', (event) => {
+            if (event.target === imageModal) {
+                imageModal.classList.add('hidden'); // Hide the modal
+                document.body.style.overflow = ''; // Restore body scrolling
+            }
+        });
     </script>
 </body>
 </html>
