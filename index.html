@@ -103,7 +103,33 @@
             <h2 class="text-4xl font-bold text-center text-gray-100 mb-12">My Projects</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                <!-- Project Card 1: Style Studios Professional Work -->
+                <!-- Project Card: NCSU Professional Work -->
+                <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden transition-transform duration-300">
+                    <img src="https://placehold.co/600x400/2d3748/e2e8f0?text=NCSU+Work" alt="NCSU Professional Work Screenshot" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-100 mb-2">Professional Work at NCSU</h3>
+                        <p class="text-gray-300 mb-4">Developed and maintained features for the RabApp (Rapid Access Biosecurity App), including implementing data pipelines, enforcing access controls, and optimizing performance in a cloud-first environment.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-indigo-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">Java</span>
+                            <span class="bg-indigo-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">Spring Boot</span>
+                            <span class="bg-indigo-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">Angular</span>
+                            <span class="bg-indigo-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">PostgreSQL</span>
+                            <span class="bg-indigo-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">AWS Backend</span>
+                            <span class="bg-indigo-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">Docker</span>
+                            <span class="bg-indigo-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">Python (Parquet/ETL)</span>
+                            <span class="bg-indigo-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">Thymeleaf</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="Projects\NCSUWork.html" class="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-indigo-700 transform hover:scale-105 transition-transform duration-300 transition-colors">Learn More</a>
+                            <a href="https://github.com/WM-NCSUWork" target="_blank" class="text-indigo-400 hover:text-indigo-200 font-medium flex items-center group">
+                                NCSU GitHub Profile
+                                <svg class="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card: Style Studios Professional Work -->
                 <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden transition-transform duration-300">
                     <img src="https://placehold.co/600x400/2d3748/e2e8f0?text=Style+Studios" alt="Style Studios Project Screenshot" class="w-full h-48 object-cover">
                     <div class="p-6">
@@ -129,7 +155,7 @@
                     </div>
                 </div>
 
-                <!-- Project Card 2: Project VRS -->
+                <!-- Project Card: Project VRS -->
                 <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden transition-transform duration-300">
                     <img src="../images\VRS Joystick.png" alt="Project VRS Thumbnail" class="w-full h-48 object-cover">
                     <div class="p-6">
@@ -181,85 +207,104 @@
     </section>
     <!-- Skills Section -->
     <section id="skills" class="py-16 md:py-24 bg-gray-900 text-gray-200 rounded-lg shadow-md mx-auto my-8 max-w-6xl px-4">
-        <div class="container mx-auto">
-            <h2 class="text-4xl font-bold text-center text-gray-100 mb-12">My Skills & Technologies</h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-center">
+    <div class="container mx-auto">
+        <h2 class="text-4xl font-bold text-center text-gray-100 mb-12">My Skills & Technologies</h2>
+        
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-center">
+            <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C# Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
+                <p class="text-base font-semibold text-gray-100">C#</p>
+            </div>
+            <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++ Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
+                <p class="text-base font-semibold text-gray-100">C++</p>
+            </div>
+            <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
+                <p class="text-base font-semibold text-gray-100">Python (Parquet/ETL)</p>
+            </div>
+            
+            <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
+                <p class="text-base font-semibold text-gray-100">Java / Spring Boot</p>
+            </div>
 
-                <!-- Technologies -->
-                 <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C# Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
-                    <p class="text-base font-semibold text-gray-100">C#</p>
-                </div>
-                <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++ Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
-                    <p class="text-base font-semibold text-gray-100">C++</p>
-                </div>
-                <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
-                    <p class="text-base font-semibold text-gray-100">Python</p>
-                </div>
-                <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/json/json-plain.svg" alt="JSON Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
-                    <p class="text-base font-semibold text-gray-100">JSON</p>
-                </div>
-                <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xml/xml-plain.svg" alt="XML Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
-                    <p class="text-base font-semibold text-gray-100">XML</p>
-                </div>
-                <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-plain.svg" alt=".NET Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
-                    <p class="text-base font-semibold text-gray-100">.NET</p>
-                </div>
-                <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" alt="Unity Engine Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
-                    <p class="text-base font-semibold text-gray-100">Unity Engine</p>
-                </div>
-                <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" alt="Unity Data Oriented Tech Stack Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
-                    <p class="text-base font-semibold text-gray-100">Unity DOTS</p>
-                </div>
-                <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <img src="https://placehold.co/64x64/2d3748/e2e8f0?text=VR" alt="VR Development Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
-                    <p class="text-base font-semibold text-gray-100">VR Development</p>
-                </div>
+            <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" alt="Angular Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
+                <p class="text-base font-semibold text-gray-100">Angular</p>
+            </div>
 
-                <!-- Developer Tools -->
-                <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualstudio/visualstudio-plain.svg" alt="Visual Studio Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
-                    <p class="text-base font-semibold text-gray-100">Visual Studio</p>
-                </div>
-                <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-plain.svg" alt="Jira Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
-                    <p class="text-base font-semibold text-gray-100">Jira</p>
-                </div>
-                <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
-                    <p class="text-base font-semibold text-gray-100">GitHub</p>
-                </div>
-                <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <!-- No official Git LFS icon readily available via CDN, using a generic Git icon -->
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git LFS Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
-                    <p class="text-base font-semibold text-gray-100">Git LFS</p>
-                </div>
-                <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <!-- No official GitHub Actions icon readily available via CDN, using a generic actions icon -->
-                    <img src="https://placehold.co/64x64/2d3748/e2e8f0?text=Actions" alt="GitHub Actions Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
-                    <p class="text-base font-semibold text-gray-100">GitHub Actions</p>
-                </div>
-                
-                <!-- Skills (Concepts without specific logos, using generic icons or text) -->
-                <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <img src="https://placehold.co/64x64/2d3748/e2e8f0?text=OOP" alt="OOP Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
-                    <p class="text-base font-semibold text-gray-100">Object-Oriented Programming (OOP)</p>
-                </div>
+            <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
+                <p class="text-base font-semibold text-gray-100">PostgreSQL / SQL</p>
+            </div>
 
-                <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <img src="https://placehold.co/64x64/2d3748/e2e8f0?text=DevOps" alt="DevOps Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
-                    <p class="text-base font-semibold text-gray-100">DevOps</p>
-                </div>
+            <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
+                <p class="text-base font-semibold text-gray-100">Docker</p>
+            </div>
+
+            <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" alt="AWS Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
+                <p class="text-base font-semibold text-gray-100">AWS Backend</p>
+            </div>
+
+            <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-plain.svg" alt=".NET Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
+                <p class="text-base font-semibold text-gray-100">.NET Framework</p>
+            </div>
+
+            <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" alt="Unity Engine Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
+                <p class="text-base font-semibold text-gray-100">Unity Engine / Unity DOTS</p>
+            </div>
+
+            <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
+                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/meta.svg" alt="Meta VR Icon" class="mx-auto mb-2 w-12 h-12 object-contain invert">
+                <p class="text-base font-semibold text-gray-100">VR Development</p>
+            </div>
+
+            <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Thymeleaf/Spring Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
+                <p class="text-base font-semibold text-gray-100">Thymeleaf</p>
             </div>
         </div>
-    </section>
+
+        <h3 class="text-3xl font-bold text-gray-100 mt-16 mb-8 text-center">Workflow & Tools</h3>
+        
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 text-center">
+            
+            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="Github Icon" class="mx-auto mb-2 w-10 h-10 object-contain">
+                <p class="text-sm font-semibold text-gray-200">Git + GitHub</p>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualstudio/visualstudio-plain.svg" alt="Visual Studio Icon" class="mx-auto mb-2 w-10 h-10 object-contain">
+                <p class="text-sm font-semibold text-gray-200">Visual Studio / Code</p>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg" alt="IntelliJ Icon" class="mx-auto mb-2 w-10 h-10 object-contain">
+                <p class="text-sm font-semibold text-gray-200">IntelliJ</p>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-plain.svg" alt="Jira Icon" class="mx-auto mb-2 w-10 h-10 object-contain">
+                <p class="text-sm font-semibold text-gray-200">Jira / Confluence</p>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub Icon" class="mx-auto mb-2 w-10 h-10 object-contain">
+                <p class="text-sm font-semibold text-gray-200">GitHub Actions/LFS</p>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-plain.svg" alt="Postman Icon" class="mx-auto mb-2 w-10 h-10 object-contain">
+                <p class="text-sm font-semibold text-gray-200">Postman</p>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma Icon" class="mx-auto mb-2 w-10 h-10 object-contain">
+                <p class="text-sm font-semibold text-gray-200">Figma</p>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Contact Section -->
     <section id="contact" class="py-16 md:py-24 bg-gray-800 text-gray-200 rounded-lg shadow-md mx-auto my-8 max-w-6xl px-4">
