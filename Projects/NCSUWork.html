@@ -178,17 +178,104 @@
         <pre
           class="bg-gray-700 text-gray-100 p-4 rounded-md overflow-x-auto text-base mb-8"
         ><code>
-    /// Populates a Thymeleaf context with surveillance data 
-    /// to generate a biosecurity report PDF.
-    public byte[] generateSurveillanceReport(Long reportId) {
-        Context context = new Context();
-        SurveillanceData data = repository.findById(reportId);
-        
-        context.setVariable("data", data);
-        context.setVariable("timestamp", LocalDateTime.now());
-        
-        String htmlContent = templateEngine.process("pdf/surveillance_template", context);
-        return pdfGenerator.render(htmlContent);
+    /**
+     * Processes a single InformationPlan (question/answer) item, extracts the answer,
+     * performs necessary formatting, and sets the result into the Thymeleaf context.
+     *
+     * @param pdfDataRow The object containing the question and answer data.
+     * @param context The Thymeleaf context to set variables in.
+     */
+    public boolean tryPopulateThymeleafContextWithAnswer(PdfDataRowProjection pdfDataRow, final Context context) {
+        JsonNode answerNode = this.inputTypeService.safelyParseJson(pdfDataRow.getAnswerJson());
+        final SPSQuestion.QuestionMultipartType questionType = pdfDataRow.getQuestionType();
+        final String questionShortName = pdfDataRow.getQuestionShortName();
+        boolean success = switch (questionType) {
+            case MULTI_CHECKBOX -> populateMultiCheckboxAnswer(answerNode, questionShortName, context);
+            case TABLE -> populateTableAnswer(answerNode, questionShortName, context);
+            case SINGLE_ANSWER -> {
+                if (answerNode == null) {
+                    LOG.error("Failed to populate SINGLE_ANSWER for question: {}. Answer node is null.", questionShortName);
+                    context.setVariable(questionShortName, "N/A");
+                    yield false;
+                }
+                context.setVariable(questionShortName, answerNode.textValue());
+                yield true;
+            }
+        };
+        if(!success) return false;
+        if (questionType == SPSQuestion.QuestionMultipartType.SINGLE_ANSWER) {
+            String singleAnswerText = "";
+
+            if (Objects.requireNonNull(answerNode).isTextual()) {
+                singleAnswerText = answerNode.textValue().trim();
+            }
+            // formatting
+            String formattedAnswer = this.inputTypeService.formatAnswerForEmptyOrPhoneNaive(questionShortName, singleAnswerText);
+            context.setVariable(questionShortName, formattedAnswer);
+        }
+        return true;
+    }
+
+    private boolean populateMultiCheckboxAnswer(JsonNode answerNode, String questionShortName, Context context)
+    {
+        try
+        {
+            // MULTI_CHECKBOX should always be an array of strings
+            if (answerNode != null && answerNode.isArray()) {
+                List<String> selectedOptions = new ArrayList<>();
+                for (JsonNode node : answerNode) {
+                    if (node.isTextual()) {
+                        selectedOptions.add(node.textValue());
+                    } else {
+                        throw new RuntimeException(
+                                "Unexpected JSON type in MULTI_CHECKBOX for '" + questionShortName +
+                                        "'. Expected array of strings but encountered: " + node.getNodeType() +
+                                        " → " + node
+                        );
+                    }
+                }
+                context.setVariable(questionShortName, selectedOptions);
+            }
+        } catch (Exception e) {
+        LOG.error("Failed to parse TABLE JSON array for {}: {}", questionShortName, e.getMessage());
+        context.setVariable(questionShortName, Collections.emptyList());
+        return false;
+        }
+        return true;
+    }
+
+    private boolean populateTableAnswer(JsonNode answerNode, String questionShortName, Context context)
+    {
+        try
+        {
+            List<Map<String, Object>> tableData = new ArrayList<>();
+            if (answerNode != null && answerNode.isArray()) {
+                for (JsonNode rowNode : answerNode) {
+                    // Each row must be an object: { key: value }
+                    if (!rowNode.isObject()) continue;
+                    Map<String, Object> row = new LinkedHashMap<>();
+                    for (Map.Entry<String, JsonNode> field : rowNode.properties()) {
+                        JsonNode value = field.getValue();
+
+                        if (value.isNull()) {
+                            row.put(field.getKey(), "");
+                        } else if (value.isValueNode()) {
+                            row.put(field.getKey(), value.textValue());
+                        } else {
+                            row.put(field.getKey(), value.toString());
+                        }
+                    }
+                    tableData.add(row);
+                }
+            }
+            context.setVariable(questionShortName , tableData);
+
+        } catch (Exception e) {
+            LOG.error("Failed to parse TABLE JSON for {}: {}", questionShortName, e.getMessage());
+            context.setVariable(questionShortName, Collections.emptyList());
+            return false;
+        }
+        return true;
     }
             </code></pre>
         <p class="text-center text-gray-400 text-sm mb-12">
@@ -199,12 +286,12 @@
         <!-- Image 2 -->
         <div class="mb-8">
           <img
-            src="https://placehold.co/800x450/2d3748/e2e8f0?text=Docker+Stack+Topology"
+            src="../images/dockerStack.png"
             alt="Docker Stack"
             class="w-full rounded-lg shadow-md mb-4"
           />
           <p class="text-center text-gray-400 text-sm">
-            Visualizing the Dockerized local stack: Spring Boot API, Angular
+            The local stack I used for development with: Spring Boot API, Angular
             frontend, and PostgreSQL.
           </p>
         </div>
