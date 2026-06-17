@@ -4,46 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wyatt Murray - Unity VR Programmer Portfolio</title>
-    <!-- Tailwind CSS CDN -->
+    <!-- Tailwind CSS CDN (handles layout/grid/flex/responsive utilities) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts - Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* Custom styles for dark mode and Inter font */
-        body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-            background-color: #1a202c; /* Dark background */
-            color: #e2e8f0; /* Light text color */
-        }
-        /* Custom scrollbar for a cleaner look in dark mode */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #2d3748;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #4a5568;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #64748b;
-        }
-    </style>
+    <!-- Shared site stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body class="antialiased">
 
     <!-- Header Section -->
     <header class="bg-gray-800 shadow-sm py-4 sticky top-0 z-50 rounded-b-lg">
         <nav class="container mx-auto px-4 flex justify-between items-center">
-            <a href="#hero" class="text-2xl font-bold text-indigo-400 rounded-md p-2 hover:bg-gray-700 transition-colors">Wyatt Murray</a>
+            <a href="#hero" class="nav-logo">Wyatt Murray</a>
             <div class="flex space-x-6">
-                <a href="#about" class="text-gray-300 hover:text-indigo-400 font-medium transition-colors rounded-md p-2 hover:bg-gray-700">About</a>
-                <a href="#projects" class="text-gray-300 hover:text-indigo-400 font-medium transition-colors rounded-md p-2 hover:bg-gray-700">Projects</a>
-                <a href="#skills" class="text-gray-300 hover:text-indigo-400 font-medium transition-colors rounded-md p-2 hover:bg-gray-700">Skills</a>
-                <a href="#contact" class="text-gray-300 hover:text-indigo-400 font-medium transition-colors rounded-md p-2 hover:bg-gray-700">Contact</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#contact" class="nav-link">Contact</a>
             </div>
         </nav>
     </header>
@@ -54,7 +32,7 @@
             <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
                 <!-- Profile Picture -->
                 <div class="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden shadow-xl border-4 border-white">
-                    <img src="images\selfie.png" alt="Wyatt Murray Profile Picture" class="w-full h-full object-cover">
+                    <img src="images/selfie.png" alt="Wyatt Murray Profile Picture" class="w-full h-full object-cover">
                 </div>
                 <!-- Hero Text -->
                 <div>
@@ -63,8 +41,8 @@
                         A passionate <span class="font-semibold">Full-Stack And Unity 3D Developer</span> dedicated to building Performant, engaging applications.
                     </p>
                     <div class="flex justify-center space-x-4">
-                        <a href="#projects" class="bg-white text-indigo-700 hover:bg-indigo-100 px-6 py-3 rounded-full font-semibold shadow-lg transform hover:scale-105 transition-all duration-300">View My Work</a>
-                        <a href="#contact" class="border border-white text-white hover:bg-white hover:text-indigo-700 px-6 py-3 rounded-full font-semibold shadow-lg transform hover:scale-105 transition-all duration-300">Get in Touch</a>
+                        <a href="#projects" class="btn btn--md btn--white btn--shadow-lg">View My Work</a>
+                        <a href="#contact" class="btn btn--md btn--outline btn--shadow-lg">Get in Touch</a>
                     </div>
                 </div>
             </div>
@@ -72,9 +50,9 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-16 md:py-24 bg-gray-900 text-gray-200 rounded-lg shadow-md mx-auto my-8 max-w-6xl px-4">
+    <section id="about" class="section bg-gray-900 text-gray-200">
         <div class="container mx-auto">
-            <h2 class="text-4xl font-bold text-center text-gray-100 mb-12">About Me</h2>
+            <h2 class="section-title">About Me</h2>
             <div class="flex flex-col md:flex-row items-center gap-12">
                 <div class="md:w-1/2">
                     <img src="images/workplacePhoto.JPG" alt="About Me Illustration" class="rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300">
@@ -92,7 +70,7 @@
                         In my spare time, I enjoy VR gaming, playing Dungeons & Dragons with friends, 3D printing, leatherwork, and homelab building & management.
                     </p>
                     <div class="text-center md:text-left">
-                        <a href="images/Wyatt Murray Developer Resume 3-25-26.pdf" target="_blank" class="bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold shadow-md hover:bg-indigo-700 transform hover:scale-105 transition-all duration-300 inline-flex items-center">
+                        <a href="images/Wyatt Murray Developer Resume 3-25-26.pdf" target="_blank" class="btn btn--md btn--primary btn--shadow-md">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                             Download My Resume
                         </a>
@@ -103,30 +81,30 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-16 md:py-24 bg-gray-800 text-gray-200 rounded-lg shadow-md mx-auto my-8 max-w-6xl px-4">
+    <section id="projects" class="section bg-gray-800 text-gray-200">
         <div class="container mx-auto">
-            <h2 class="text-4xl font-bold text-center text-gray-100 mb-12">My Projects & Prior Work</h2>
+            <h2 class="section-title">My Projects & Prior Work</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
                 <!-- Project Card: NCSU Professional Work -->
-                <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden transition-transform duration-300">
-                    <img src="./images/rabappLogo.webp" alt="NCSU Professional Work Screenshot" class="w-full h-48 object-contain">
+                <div class="project-card">
+                    <img src="./images/rabappLogo.webp" alt="NCSU Professional Work Screenshot" class="card-img card-img--contain">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-100 mb-2">Professional Work at NCSU</h3>
                         <p class="text-gray-300 mb-4">Developed and maintained features for the RabApp (Rapid Access Biosecurity App), including implementing data pipelines, enforcing access controls, and optimizing performance in a cloud-first environment.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-indigo-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">Java</span>
-                            <span class="bg-indigo-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">Spring Boot</span>
-                            <span class="bg-indigo-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">Angular</span>
-                            <span class="bg-indigo-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">PostgreSQL</span>
-                            <span class="bg-indigo-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">AWS Backend</span>
-                            <span class="bg-indigo-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">Docker</span>
-                            <span class="bg-indigo-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">Python (Parquet/ETL)</span>
-                            <span class="bg-indigo-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">Thymeleaf</span>
+                            <span class="tag tag--indigo">Java</span>
+                            <span class="tag tag--indigo">Spring Boot</span>
+                            <span class="tag tag--indigo">Angular</span>
+                            <span class="tag tag--indigo">PostgreSQL</span>
+                            <span class="tag tag--indigo">AWS Backend</span>
+                            <span class="tag tag--indigo">Docker</span>
+                            <span class="tag tag--indigo">Python (Parquet/ETL)</span>
+                            <span class="tag tag--indigo">Thymeleaf</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <a href="Projects\NCSUWork.html" class="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-indigo-700 transform hover:scale-105 transition-transform duration-300 transition-colors">Learn More</a>
-                            <a href="https://github.com/WM-NCSUWork" target="_blank" class="text-indigo-400 hover:text-indigo-200 font-medium flex items-center group">
+                            <a href="Projects/NCSUWork.html" class="btn btn--sm btn--primary">Learn More</a>
+                            <a href="https://github.com/WM-NCSUWork" target="_blank" class="link-arrow group">
                                 NCSU GitHub Profile
                                 <svg class="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                             </a>
@@ -135,24 +113,24 @@
                 </div>
 
                 <!-- Project Card: Style Studios Professional Work -->
-                <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden transition-transform duration-300">
-                    <img src="https://placehold.co/600x400/2d3748/e2e8f0?text=Style+Studios" alt="Style Studios Project Screenshot" class="w-full h-48 object-cover">
+                <div class="project-card">
+                    <img src="https://placehold.co/600x400/2d3748/e2e8f0?text=Style+Studios" alt="Style Studios Project Screenshot" class="card-img">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-100 mb-2">Professional Work at Style Studios</h3>
                         <p class="text-gray-300 mb-4">Developed and maintained features for multiplayer VR games, including implementing Unity Netcode for GameObjects, optimizing performance with Unity ECS for Quest 2, and designing scalable inventory systems. Also created in-game tools for designers.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-indigo-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">C#</span>
-                            <span class="bg-indigo-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">Unity Engine</span>
-                            <span class="bg-indigo-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">Unity Netcode</span>
-                            <span class="bg-indigo-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">Jira</span>
-                            <span class="bg-indigo-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">Agile/Scrum</span>
-                            <span class="bg-indigo-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">VR Development</span>
-                            <span class="bg-indigo-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">Git LFS</span>
-                            <span class="bg-indigo-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">DevOps</span>
+                            <span class="tag tag--indigo">C#</span>
+                            <span class="tag tag--indigo">Unity Engine</span>
+                            <span class="tag tag--indigo">Unity Netcode</span>
+                            <span class="tag tag--indigo">Jira</span>
+                            <span class="tag tag--indigo">Agile/Scrum</span>
+                            <span class="tag tag--indigo">VR Development</span>
+                            <span class="tag tag--indigo">Git LFS</span>
+                            <span class="tag tag--indigo">DevOps</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <a href="Projects\StyleStudiosWork.html" class="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-indigo-700 transform hover:scale-105 transition-transform duration-300 transition-colors">Learn More</a>
-                            <a href="https://github.com/Skyfall1235" target="_blank" class="text-indigo-400 hover:text-indigo-200 font-medium flex items-center group">
+                            <a href="Projects/StyleStudiosWork.html" class="btn btn--sm btn--primary">Learn More</a>
+                            <a href="https://github.com/Skyfall1235" target="_blank" class="link-arrow group">
                                 GitHub Profile
                                 <svg class="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                             </a>
@@ -161,20 +139,20 @@
                 </div>
 
                 <!-- Project Card: MC Status Bot -->
-                <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden transition-transform duration-300">
-                    <img src="./images/MCBotIco.webp" alt="MC Status Bot Thumbnail" class="w-full h-48 object-cover">
+                <div class="project-card">
+                    <img src="./images/MCBotIco.webp" alt="MC Status Bot Thumbnail" class="card-img">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-100 mb-2">MC Status Discord Bot</h3>
                         <p class="text-gray-300 mb-4">A containerized .NET Discord bot that provides real-time Minecraft server monitoring. Features dynamic Slash Command configuration and persistent JSON storage.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">C# / .NET 8</span>
-                            <span class="bg-blue-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">Docker</span>
-                            <span class="bg-blue-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">Discord API</span>
-                            <span class="bg-blue-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">JSON Persistence</span>
+                            <span class="tag tag--blue">C# / .NET 8</span>
+                            <span class="tag tag--blue">Docker</span>
+                            <span class="tag tag--blue">Discord API</span>
+                            <span class="tag tag--blue">JSON Persistence</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <a href="Projects\MCDiscordBot.html" class="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-indigo-700 transform hover:scale-105 transition-transform duration-300">Learn More</a>
-                            <a href="https://github.com/Skyfall1235/AMinecraftServerDiscordBot" target="_blank" class="text-indigo-400 hover:text-indigo-200 font-medium flex items-center group">
+                            <a href="Projects/MCDiscordBot.html" class="btn btn--sm btn--primary">Learn More</a>
+                            <a href="https://github.com/Skyfall1235/AMinecraftServerDiscordBot" target="_blank" class="link-arrow group">
                                 GitHub
                                 <svg class="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                             </a>
@@ -183,22 +161,22 @@
                 </div>
 
                 <!-- Project Card: Project VRS -->
-                <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden transition-transform duration-300">
-                    <img src="./images\VRS Joystick.png" alt="Project VRS Thumbnail" class="w-full h-48 object-cover">
+                <div class="project-card">
+                    <img src="./images/VRS Joystick.png" alt="Project VRS Thumbnail" class="card-img">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-gray-100 mb-2">Project VRS (VR Spacecraft Simulator)</h3>
                         <p class="text-gray-300 mb-4">An independent VR project featuring an immersive spacecraft flight control system with dual-joystick functionality, real-time subsystem management, and physics-simulated 3D controls. Includes dynamic combat environments with customizable enemy waves and positional tracking turrets.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-green-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">C#</span>
-                            <span class="bg-green-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">Unity Engine</span>
-                            <span class="bg-green-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">Unity DOTS</span>
-                            <span class="bg-green-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">VR Development</span>
-                            <span class="bg-green-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">Git LFS</span>
-                            <span class="bg-green-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">OOP</span>
+                            <span class="tag tag--green">C#</span>
+                            <span class="tag tag--green">Unity Engine</span>
+                            <span class="tag tag--green">Unity DOTS</span>
+                            <span class="tag tag--green">VR Development</span>
+                            <span class="tag tag--green">Git LFS</span>
+                            <span class="tag tag--green">OOP</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <a href="Projects\ProjectVRS.html" class="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-indigo-700 transform hover:scale-105 transition-transform duration-300 transition-colors">Learn More</a>
-                            <a href="https://github.com/Skyfall1235/VR-Spaceship-Game" target="_blank" class="text-indigo-400 hover:text-indigo-200 font-medium flex items-center group">
+                            <a href="Projects/ProjectVRS.html" class="btn btn--sm btn--primary">Learn More</a>
+                            <a href="https://github.com/Skyfall1235/VR-Spaceship-Game" target="_blank" class="link-arrow group">
                                 GitHub
                                 <svg class="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                             </a>
@@ -207,144 +185,174 @@
                 </div>
 
                 <!-- 1Week Tanks project card -->
-                <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden transition-transform duration-300">
-            <img src="./images\RIPOFF.png" alt="1 Week Tanks Thumbnail" class="w-full h-48 object-cover">
-            <div class="p-6">
-                <h3 class="text-2xl font-semibold text-gray-100 mb-2">1 Week Tanks</h3>
-                <p class="text-gray-300 mb-4">A collaborative personal project focused on Unity's Peer-to-Peer networking, developed within a one-week constraint. Features real-time tank combat, synced events, and a dynamic kill feed.</p>
-                <div class="flex flex-wrap gap-2 mb-4">
-                    <span class="bg-purple-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">C#</span>
-                    <span class="bg-purple-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">Unity Engine</span>
-                    <span class="bg-purple-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">Unity Netcode</span>
-                    <span class="bg-purple-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">Git LFS</span>
-                    <span class="bg-purple-700 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">OOP</span>
-                </div>
-                <div class="flex justify-between items-center">
-                    <a href="Projects\1WeekTanks.html" class="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-indigo-700 transform hover:scale-105 transition-transform duration-300 transition-colors">Learn More</a>
-                    <a href="https://github.com/Skyfall1235/1weekTanks" target="_blank" class="text-indigo-400 hover:text-indigo-200 font-medium flex items-center group">
-                GitHub
-                        <svg class="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                    </a>
+                <div class="project-card">
+                    <img src="./images/RIPOFF.png" alt="1 Week Tanks Thumbnail" class="card-img">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-100 mb-2">1 Week Tanks</h3>
+                        <p class="text-gray-300 mb-4">A collaborative personal project focused on Unity's Peer-to-Peer networking, developed within a one-week constraint. Features real-time tank combat, synced events, and a dynamic kill feed.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag tag--purple">C#</span>
+                            <span class="tag tag--purple">Unity Engine</span>
+                            <span class="tag tag--purple">Unity Netcode</span>
+                            <span class="tag tag--purple">Git LFS</span>
+                            <span class="tag tag--purple">OOP</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="Projects/1WeekTanks.html" class="btn btn--sm btn--primary">Learn More</a>
+                            <a href="https://github.com/Skyfall1235/1weekTanks" target="_blank" class="link-arrow group">
+                                GitHub
+                                <svg class="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-
     </section>
+
+    <!-- Certifications Section -->
+    <section id="skills" class="section bg-gray-900 text-gray-200">
+        <div class="container mx-auto">
+
+            
+
+        </div>
+    </section>
+
     <!-- Skills Section -->
-    <section id="skills" class="py-16 md:py-24 bg-gray-900 text-gray-200 rounded-lg shadow-md mx-auto my-8 max-w-6xl px-4">
-    <div class="container mx-auto">
-        <h2 class="text-4xl font-bold text-center text-gray-100 mb-12">My Skills & Technologies</h2>
+    <section id="skills" class="section bg-gray-900 text-gray-200">
+
         
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-center">
-            <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C# Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
-                <p class="text-base font-semibold text-gray-100">C#</p>
+
+        <div class="container mx-auto">
+
+            <h2 class="section-title">My Certifications</h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-center">
+                <div class="skill-card">
+                    <a href="YOUR_CERTIFICATION_LINK_HERE" target="_blank" rel="noopener noreferrer" class="skill-card block hover:opacity-90 transition-opacity">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS Icon" class="skill-icon">
+                        <p class="skill-label">AWS Certified Cloud Practitioner</p>
+                    </a>
+                </div> 
+
+                <div class="skill-card">
+                    <p class="skill-label">More Coming Soon!</p>
+                </div> 
+
             </div>
             
-            <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/meta.svg" alt="Meta VR Icon" class="mx-auto mb-2 w-12 h-12 object-contain invert">
-                <p class="text-base font-semibold text-gray-100">VR Development</p>
+            <br> <br>
+            <h2 class="section-title">My Skills & Technologies</h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-center">
+                <div class="skill-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C# Icon" class="skill-icon">
+                    <p class="skill-label">C#</p>
+                </div>
+
+                <div class="skill-card">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/meta.svg" alt="Meta VR Icon" class="skill-icon invert">
+                    <p class="skill-label">VR Development</p>
+                </div>
+
+                <div class="skill-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" alt="Unity Engine Icon" class="skill-icon">
+                    <p class="skill-label">Unity Engine / Unity DOTS</p>
+                </div>
+
+                <div class="skill-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-plain.svg" alt=".NET Icon" class="skill-icon">
+                    <p class="skill-label">.NET Framework</p>
+                </div>
+
+                <div class="skill-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java Icon" class="skill-icon">
+                    <p class="skill-label">Java / Spring Boot</p>
+                </div>
+
+                <div class="skill-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" alt="Angular Icon" class="skill-icon">
+                    <p class="skill-label">Angular</p>
+                </div>
+
+                <div class="skill-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL Icon" class="skill-icon">
+                    <p class="skill-label">PostgreSQL / SQL</p>
+                </div>
+
+                <div class="skill-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker Icon" class="skill-icon">
+                    <p class="skill-label">Docker</p>
+                </div>
+
+                <div class="skill-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++ Icon" class="skill-icon">
+                    <p class="skill-label">C++</p>
+                </div>
+
+                <div class="skill-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" alt="AWS Icon" class="skill-icon">
+                    <p class="skill-label">AWS Backend</p>
+                </div>
+
+                <div class="skill-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python Icon" class="skill-icon">
+                    <p class="skill-label">Python (Parquet/ETL)</p>
+                </div>
+
+                <div class="skill-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Thymeleaf/Spring Icon" class="skill-icon">
+                    <p class="skill-label">Thymeleaf</p>
+                </div>
             </div>
 
-            <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" alt="Unity Engine Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
-                <p class="text-base font-semibold text-gray-100">Unity Engine / Unity DOTS</p>
-            </div>
+            <h3 class="text-3xl font-bold text-gray-100 mt-16 mb-8 text-center">Workflow & Tools</h3>
 
-            <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-plain.svg" alt=".NET Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
-                <p class="text-base font-semibold text-gray-100">.NET Framework</p>
-            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 text-center">
 
-            <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
-                <p class="text-base font-semibold text-gray-100">Java / Spring Boot</p>
-            </div>
-
-            <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" alt="Angular Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
-                <p class="text-base font-semibold text-gray-100">Angular</p>
-            </div>
-
-            <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
-                <p class="text-base font-semibold text-gray-100">PostgreSQL / SQL</p>
-            </div>
-
-            <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
-                <p class="text-base font-semibold text-gray-100">Docker</p>
-            </div>
-
-            <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++ Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
-                <p class="text-base font-semibold text-gray-100">C++</p>
-            </div>
-
-            <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" alt="AWS Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
-                <p class="text-base font-semibold text-gray-100">AWS Backend</p>
-            </div>
-     
-            <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
-                <p class="text-base font-semibold text-gray-100">Python (Parquet/ETL)</p>
-            </div>
-
-            <div class="bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Thymeleaf/Spring Icon" class="mx-auto mb-2 w-12 h-12 object-contain">
-                <p class="text-base font-semibold text-gray-100">Thymeleaf</p>
+                <div class="tool-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="Github Icon" class="tool-icon">
+                    <p class="tool-label">Git + GitHub</p>
+                </div>
+                <div class="tool-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualstudio/visualstudio-plain.svg" alt="Visual Studio Icon" class="tool-icon">
+                    <p class="tool-label">Visual Studio / Code</p>
+                </div>
+                <div class="tool-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg" alt="IntelliJ Icon" class="tool-icon">
+                    <p class="tool-label">IntelliJ</p>
+                </div>
+                <div class="tool-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-plain.svg" alt="Jira Icon" class="tool-icon">
+                    <p class="tool-label">Jira / Confluence</p>
+                </div>
+                <div class="tool-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub Icon" class="tool-icon">
+                    <p class="tool-label">GitHub Actions/LFS</p>
+                </div>
+                <div class="tool-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-plain.svg" alt="Postman Icon" class="tool-icon">
+                    <p class="tool-label">Postman</p>
+                </div>
+                <div class="tool-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma Icon" class="tool-icon">
+                    <p class="tool-label">Figma</p>
+                </div>
             </div>
         </div>
-
-        <h3 class="text-3xl font-bold text-gray-100 mt-16 mb-8 text-center">Workflow & Tools</h3>
-        
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 text-center">
-            
-            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="Github Icon" class="mx-auto mb-2 w-10 h-10 object-contain">
-                <p class="text-sm font-semibold text-gray-200">Git + GitHub</p>
-            </div>
-            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualstudio/visualstudio-plain.svg" alt="Visual Studio Icon" class="mx-auto mb-2 w-10 h-10 object-contain">
-                <p class="text-sm font-semibold text-gray-200">Visual Studio / Code</p>
-            </div>
-            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg" alt="IntelliJ Icon" class="mx-auto mb-2 w-10 h-10 object-contain">
-                <p class="text-sm font-semibold text-gray-200">IntelliJ</p>
-            </div>
-            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-plain.svg" alt="Jira Icon" class="mx-auto mb-2 w-10 h-10 object-contain">
-                <p class="text-sm font-semibold text-gray-200">Jira / Confluence</p>
-            </div>
-            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub Icon" class="mx-auto mb-2 w-10 h-10 object-contain">
-                <p class="text-sm font-semibold text-gray-200">GitHub Actions/LFS</p>
-            </div>
-            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-plain.svg" alt="Postman Icon" class="mx-auto mb-2 w-10 h-10 object-contain">
-                <p class="text-sm font-semibold text-gray-200">Postman</p>
-            </div>
-            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma Icon" class="mx-auto mb-2 w-10 h-10 object-contain">
-                <p class="text-sm font-semibold text-gray-200">Figma</p>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 md:py-24 bg-gray-800 text-gray-200 rounded-lg shadow-md mx-auto my-8 max-w-6xl px-4">
+    <section id="contact" class="section bg-gray-800 text-gray-200">
         <div class="container mx-auto text-center">
-            <h2 class="text-4xl font-bold text-gray-100 mb-8">Let's Connect!</h2>
+            <h2 class="section-title section-title--tight">Let's Connect!</h2>
             <p class="text-lg mb-8 max-w-2xl mx-auto">
                 If you believe my skills would be a valuable asset to your project or team, please don't hesitate to reach out via email. I look forward to hearing from you!
             </p>
 
             <div class="flex justify-center">
-                <a href="mailto:wyattmurray1235@gmail.com" class="bg-indigo-600 text-white px-8 py-4 rounded-full text-xl font-semibold shadow-md hover:bg-indigo-700 transform hover:scale-105 transition-all duration-300 flex items-center">
+                <a href="mailto:wyattmurray1235@gmail.com" class="btn btn--lg btn--primary btn--shadow-md">
                     <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M2.003 5.884L10 11l7.997-5.116C17.93 5.378 16.03 4 12 4s-5.93 1.378-7.997 1.884zM2 7.5V18c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V7.5l-10 6.5-10-6.5z"/>
                     </svg>
@@ -353,17 +361,17 @@
             </div>
 
             <div class="mt-12 flex justify-center space-x-6">
-                <a href="https://github.com/Skyfall1235" target="_blank" class="text-gray-400 hover:text-indigo-400 transition-colors">
+                <a href="https://github.com/Skyfall1235" target="_blank" class="social-link">
                     <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.47.087.68-.217.68-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.953 0-1.096.392-1.988 1.03-2.69-.104-.253-.448-1.274.097-2.659 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.385.202 2.406.096 2.659.637.702 1.029 1.594 1.029 2.69 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.208.577.688.483C21.137 20.19 24 16.425 24 12.017 24 6.484 19.522 2 14 2h-2z" clip-rule="evenodd" />
                     </svg>
                 </a>
-                <a href="https://www.linkedin.com/in/wyatt-murray" target="_blank" class="text-gray-400 hover:text-indigo-400 transition-colors">
+                <a href="https://www.linkedin.com/in/wyatt-murray" target="_blank" class="social-link">
                     <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                     </svg>
                 </a>
-                <a href="mailto:wyattmurray1235@gmail.com" class="text-gray-400 hover:text-indigo-400 transition-colors">
+                <a href="mailto:wyattmurray1235@gmail.com" class="social-link">
                     <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M2.003 5.884L10 11l7.997-5.116C17.93 5.378 16.03 4 12 4s-5.93 1.378-7.997 1.884zM2 7.5V18c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V7.5l-10 6.5-10-6.5z"/>
                     </svg>

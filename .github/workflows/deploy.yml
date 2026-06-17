@@ -1,0 +1,45 @@
+name: Deploy Tailwind Site to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master # Change to master if your default branch uses it
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/configure-pages@v4 # Automatically configures Pages settings
+        
+      - name: Install Node Dependencies
+        run: npm ci # Performs a clean, fast install of package.json dependencies
+
+      - name: Compile Tailwind Production CSS
+        run: npm run build
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.' # Uploads the entire root directory (including index.html and /dist)
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
