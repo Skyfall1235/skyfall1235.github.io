@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Dev Suite - Wyatt Murray</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        ::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #2d3748;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4a5568;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header Section -->
+    <header class="bg-gray-800 shadow-sm py-4 rounded-b-lg">
+        <nav class="container mx-auto px-4 flex justify-between items-center">
+            <a href="../index.html" class="text-2xl font-bold text-indigo-400 rounded-md p-2 hover:bg-gray-700 transition-colors">← Back to Portfolio</a>
+            <span class="text-xl font-semibold text-gray-300">Game Dev Suite</span>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-16">
+        <article class="bg-gray-900 p-8 rounded-lg shadow-lg">
+            <h1 class="text-5xl font-extrabold text-center text-indigo-400 mb-8">
+                Game Dev Suite Desktop Application
+            </h1>
+            <p class="text-lg text-gray-300 mb-8 max-w-3xl mx-auto text-center">
+                A cross-platform desktop application built with Blazor and Photino, providing a lightweight, 
+                centralized suite of development tools and automation utilities for game developers.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-100 mb-4">Project Overview & Features</h3>
+                    <ul class="list-disc list-inside text-lg text-gray-300 space-y-2">
+                        <li>
+                            <strong>The Problem (Why):</strong> 
+                            Built to eliminate fragmentation by consolidating scattered game development utilities, project trackers, and asset pipelines into a single workspace.
+                        </li>
+                        <li>
+                            <strong>The Tech Stack (What it Used):</strong> 
+                            Leverages a Blazor Hybrid architecture paired with Photino, enabling a modern web-style frontend powered by a high-performance native C# backend.
+                        </li>
+                        <li>
+                            <strong>Core Capabilities (What it Did):</strong> 
+                            Streamlines repetitive daily workflows, automates local pipeline configurations, and handles rapid code template generation for faster prototyping.
+                        </li>
+                        <li>
+                            <strong>Performance & Workflow (Why):</strong> 
+                            Chosen to deliver a native desktop experience with a fraction of Electron's memory overhead, 
+                            while allowing full use of familiar HTML/CSS layout building blocks entirely within C#.
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-100 mb-4">Skills & Technologies Applied</h3>
+                    <div class="flex flex-wrap gap-3 mb-8">
+                        <span class="bg-indigo-700 text-white text-lg font-medium px-4 py-1 rounded-full">C# / .NET 8</span>
+                        <span class="bg-indigo-700 text-white text-lg font-medium px-4 py-1 rounded-full">Blazor Hybrid WASM</span>
+                        <span class="bg-indigo-700 text-white text-lg font-medium px-4 py-1 rounded-full">Photino</span>
+                        <span class="bg-indigo-700 text-white text-lg font-medium px-4 py-1 rounded-full">HTML / CSS</span>
+                    </div>
+
+                    <h3 class="text-3xl font-bold text-gray-100 mb-4">Workflow & Tools</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-gray-700 text-white text-lg font-medium px-4 py-1 rounded-full">Git + GitHub</span>
+                        <span class="bg-gray-700 text-white text-lg font-medium px-4 py-1 rounded-full">Visual Studio</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deployment Visuals -->
+            <h2 class="text-4xl font-extrabold text-white mb-6">Core Modules & Implementation</h2>
+<p class="text-lg text-gray-300 mb-8">
+    The GameDev Suite is broken down into dedicated, modular tabs designed to solve specific friction points in the development pipeline.
+</p>
+
+<div class="space-y-12 mb-12">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div>
+            <h3 class="text-2xl font-bold text-indigo-400 mb-3">Dynamic Class Generation Tool</h3>
+            <p class="text-gray-300 leading-relaxed">
+                Accelerates rapid prototyping by automatically generating boilerplate script architectures for the <strong>top three major game engines</strong>. By feeding structural patterns into an engine-agnostic engine, it outputs syntactically correct classes, fields, and methods instantly.
+            </p>
+            <br>
+            <p class="text-gray-300 leading-relaxed">
+                This Tool was by far the most complicated to implement due to the complexity and format of the various languages, various syntaxes, 
+                while being able to easily convert between the set built in formats, or user made ones imported into the json config.
+                The code snippet below goes more in depth on how this generates actual code dynamically, but to summarize: I defined patterns for each main component of a class as well as formatting for common methods and layouts, 
+                and then gave the user the ability to modify things like access modifiers, method names, parameter names and types, and field types while then automatically generating the class, constructors, and other necessary components.
+            </p>
+        </div>
+        <div class="bg-gray-800 rounded-lg p-2 border border-gray-700">
+            <img src="../images/GDS-classbuilder.png" alt="Dynamic Class Generation Tool UI" class="rounded shadow-md w-full h-auto">
+        </div>
+    </div>
+
+    <p class="text-gray-300 leading-relaxed">
+                A final word about this tool is that I allowed the user to add their own language patterns to branch into new languages, as well as copy, paste, andedit the underlying json structure for how a class is generated, 
+                which allows users to share generated templates, and then another user can insert it and convert it to whatever language they need.
+            </p>
+
+    <hr class="border-gray-700">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div class="bg-gray-800 rounded-lg p-2 border border-gray-700 md:order-2">
+            <img src="../images/GDS-spectrum.png" alt="Spectrum Lab Color Palette UI" class="rounded shadow-md w-full h-auto">
+        </div>
+        <div class="md:order-1">
+            <h3 class="text-2xl font-bold text-indigo-400 mb-3">Spectrum Lab</h3>
+            <p class="text-gray-300 leading-relaxed">
+                A dedicated visual utility for designers and developers to manage color spaces. It features instant Color-to-Hex conversions and a dynamic palette generator, 
+                ensuring visual assets maintain color consistency across engine UI systems and shaders.
+            </p>
+            <br>
+            <p class="text-gray-300 leading-relaxed">
+                I plan to do more work on this tool to add additional color space conversions and improve the palette generation algorithm, 
+                as well as enhance the user interface to full the void space it currently has. 
+                This module required me to pull from the system.drawing namespace to create various approximation methods to convert between different color spaces 
+                such as RGB, HSL, and HSV.
+            </p>
+        </div>
+    </div>
+
+    <hr class="border-gray-700">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div>
+            <h3 class="text-2xl font-bold text-indigo-400 mb-3">Network Diagnostics (Ping Tab)</h3>
+            <p class="text-gray-300 leading-relaxed">
+                Integrates low-level local networking diagnostics directly into the desktop workspace. Built to run alongside multiplayer game instances, 
+                it allows real-time packet round-trip testing and connection quality checks without forcing the developer to rely on external command-line terminals.
+            </p>
+            <br>
+            <p class="text-gray-300 leading-relaxed">
+                Designing this simple but useful tool allowed me to provide an easier way for developers to monitor and debug their network connections, 
+                and I am personally proud that I was able to write all the code for this module with no AI whatsoever!
+            </p>
+        </div>
+        <div class="bg-gray-800 rounded-lg p-2 border border-gray-700">
+            <img src="../images/GDS-ping.png" alt="Networking Diagnostic Tab UI" class="rounded shadow-md w-full h-auto">
+        </div>
+    </div>
+
+</div>
+
+<div class="mt-12">
+    <h3 class="text-3xl font-bold text-gray-100 mb-4">Under the Hood: Template Code Generation</h3>
+    <p class="text-gray-300 mb-4">
+        Below is the core architectural logic driving the language-agnostic layout compilation engine. It dynamically parses language criteria to build clean constructors, variables, and inheritance trees:
+    </p>
+    <br>
+    <p class="text-gray-300 mb-4">
+        Designing this system required me to break down what I am aware of structure wise to the dgeneral layout of most game development scripts into blocks of pieces that the average user would need.
+        Using Serializers and Reflection, I was able to create a flexible system that can adapt to different programming languages and frameworks, 
+        and can even expand into new formats or can be adjusted via the internal JSON configuration.
+    </p>
+    <div class="bg-gray-900 rounded-lg p-6 border border-gray-800 overflow-x-auto text-sm font-mono text-gray-300">
+        <pre><code>public static string GenerateClass(ClassPattern cPattern)
+{
+    LanguageDefinition lang = cPattern.Definition;
+    if (lang == null) return "// ERROR: NO_LANGUAGE_DEFINITION";
+    StringBuilder sb = new StringBuilder();
+
+    string inheritance = cPattern.Inheritables != null && cPattern.Inheritables.Count != 0
+        ? $" : {string.Join(", ", cPattern.Inheritables)}"
+        : "";
+
+    foreach (VariablePattern v in cPattern.Variables) v.Definition = lang;
+    foreach (MethodPattern m in cPattern.Methods) m.Definition = lang;
+
+    string classHeader = lang.Boilerplate.ClassDeclaration
+        .Replace("{Modifier}", lang.AccessModifiers[cPattern.Modifier])
+        .Replace("{Name}", cPattern.Name.ToPascalCase())
+        .Replace("{Inheritance}", inheritance)
+        .TrimEnd(' ', ':');
+
+    sb.AppendLine(classHeader);
+    sb.AppendLine("{");
+
+    foreach (VariablePattern v in cPattern.Variables)
+    {
+        v.Definition ??= lang;
+        sb.AppendLine($"    {GenerateVariable(v)}");
+    }
+
+    sb.AppendLine();
+
+    if (!string.IsNullOrEmpty(lang.Boilerplate.ClassConstructorPattern))
+    {
+        string constructor = lang.Boilerplate.ClassConstructorPattern
+            .Replace("{Modifier}", lang.AccessModifiers[AccessModifier.Public])
+            .Replace("{Name}", cPattern.Name.ToPascalCase())
+            .Replace("{Params}", "")
+            .Replace("{Body}", "// Constructor Logic");
+
+        sb.AppendLine(Indent(constructor));
+    }
+
+    foreach (MethodPattern m in cPattern.Methods)
+    {
+        m.Definition ??= lang;
+        sb.AppendLine(Indent(GenerateMethod(m)));
+    }
+
+    sb.AppendLine("}");
+    return sb.ToString();
+}</code></pre>
+    </div>
+</div>
+
+            <div class="text-center mt-12">
+                <P>
+                    Project is private on Github at this time!
+                </P>
+            </div>
+        </article>
+    </main>
+
+    <!-- Image Modal (Lightbox) -->
+    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+        <button id="closeModal" class="absolute top-4 right-4 text-white text-3xl font-bold p-2 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors">&times;</button>
+        <img id="modalImage" class="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-xl" src="" alt="Zoomed Image">
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-900 text-white py-8 mt-8 rounded-t-lg">
+        <div class="container mx-auto px-4 text-center text-gray-400">
+            <p>&copy; <span id="current-year-footer"></span> Wyatt Murray. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('current-year-footer').textContent = new Date().getFullYear();
+
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const closeModalButton = document.getElementById('closeModal');
+        const clickableImages = document.querySelectorAll('img.cursor-pointer');
+
+        clickableImages.forEach(image => {
+            image.addEventListener('click', () => {
+                modalImage.src = image.src;
+                imageModal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        closeModalButton.addEventListener('click', () => {
+            imageModal.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+
+        imageModal.addEventListener('click', (e) => {
+            if (e.target === imageModal) {
+                imageModal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+</body>
+</html>

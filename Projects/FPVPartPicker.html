@@ -1,0 +1,47 @@
+public static CompatibilityRule VoltageMatchingCheck => new()
+{
+    Name = "Voltage (S) Match",
+    Message = "One or more components are not rated for the battery cell count (S).",
+    Severity = RuleSeverity.Error,
+    Check = (parts) =>
+    {
+        var battery = parts.FirstOrDefault(p => p.Category == ComponentCategory.Battery);
+        if (battery == null) return true;
+
+        var bSpecs = SpecValidator.GetTypedSpecs(battery) as BatterySpecs;
+        var cellCount = bSpecs?.CellCount ?? 0;
+
+        foreach (var part in parts)
+        {
+            var dynamicSpecs = SpecValidator.GetTypedSpecs(part);
+            // We use reflection or a shared interface to check 'MaxS' and 'MinS'
+            var maxS = dynamicSpecs?.GetType().GetProperty("MaxS")?.GetValue(dynamicSpecs) as int?;
+            var minS = dynamicSpecs?.GetType().GetProperty("MinS")?.GetValue(dynamicSpecs) as int?;
+
+            if (maxS.HasValue && cellCount > maxS.Value) return false;
+            if (minS.HasValue && cellCount < minS.Value) return false;
+        }
+
+        return true;
+    }
+};
+
+public static CompatibilityRule VideoSystemMatch => new()
+{
+    Name = "Video System Protocol",
+    Message = "Digital VTX detected with an Analog-only FC/Camera setup.",
+    Severity = RuleSeverity.Warning,
+    Check = (parts) =>
+    {
+        var vtx = parts.FirstOrDefault(p => p.Category == ComponentCategory.VTX);
+        var cam = parts.FirstOrDefault(p => p.Category == ComponentCategory.Camera);
+
+        if (vtx == null || cam == null) return true;
+
+        var vSpecs = SpecValidator.GetTypedSpecs(vtx) as VTXSpecs;
+        var cSpecs = SpecValidator.GetTypedSpecs(cam) as CameraSpecs;
+
+        // Check if one is Digital (O3/Vista/Walksnail) and the other is Analog
+        return vSpecs?.Protocol == cSpecs?.Protocol;
+    }
+};
