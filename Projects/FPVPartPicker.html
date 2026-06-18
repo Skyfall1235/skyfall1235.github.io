@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MC Status Bot - Wyatt Murray</title>
-    <!-- Tailwind CSS CDN -->
+    <title>FPV Part Picker - Wyatt Murray</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts - Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -34,91 +32,105 @@
 </head>
 <body class="antialiased">
 
-    <!-- Header Section -->
     <header class="bg-gray-800 shadow-sm py-4 rounded-b-lg">
         <nav class="container mx-auto px-4 flex justify-between items-center">
             <a href="../index.html" class="text-2xl font-bold text-indigo-400 rounded-md p-2 hover:bg-gray-700 transition-colors">← Back to Portfolio</a>
             <a  class="bg-red-600 text-white px-4 py-2 rounded-full text-sm font-semibold ">
-                Project is Work In Progress
-            </a> 
-            <span class="text-xl font-semibold text-gray-300">MC Status Bot</span>
+                            Project is Work In Progress
+                    </a>
+            <span class="text-xl font-semibold text-gray-300">FPV Part Picker</span>
         </nav>
     </header>
 
     <main class="container mx-auto px-4 py-16">
         <article class="bg-gray-900 p-8 rounded-lg shadow-lg">
-            <h1 class="text-5xl font-extrabold text-center text-indigo-400 mb-8">A Simple Minecraft Status Discord Bot</h1>
+            <h1 class="text-5xl font-extrabold text-center text-indigo-400 mb-8">FPV Part Picker & Build Planner</h1>
             <p class="text-lg text-gray-300 mb-8 max-w-3xl mx-auto text-center">
-                A containerized Discord bot built with .NET 8, featuring dynamic configuration and real-time server monitoring for home-lab environments.
+                A full-stack configuration and build planning platform for FPV drone hobbyists, featuring an automated, server-side rule validation architecture to guarantee part compatibility.
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                 <div>
                     <h3 class="text-3xl font-bold text-gray-100 mb-4">Project Overview & Features</h3>
                     <ul class="list-disc list-inside text-lg text-gray-300 space-y-2">
-                        <li><strong>Real-Time Querying:</strong> Instant server status checks using the MineStat library.</li>
-                        <li><strong>Dynamic Setup:</strong> Configure IP, Port, and Notify Channels directly via Discord Slash Commands.</li>
-                        <li><strong>Persistent State:</strong> Custom JSON-based storage system ensures settings survive container restarts.</li>
-                        <li><strong>Environment Aware:</strong> Securely handles API tokens via <code>.env</code> and environment variable injection.</li>
+                        <li><strong>Automated Compatibility Engine:</strong> Evaluates active builds against strict electronic and structural thresholds (e.g., cell count, digital/analog protocols).</li>
+                        <li><strong>Dynamic Specification Parsing:</strong> Employs C# reflection to adaptively scan hardware properties without rigid structural coupling.</li>
+                        <li><strong>Relational Architecture:</strong> Fully synchronized parts directory backed by a cloud-native database instance.</li>
+                        <li><strong>Cloud Native Lifecycle:</strong> Built with containerized staging configurations and microservices infrastructure.</li>
                     </ul>
                 </div>
                 <div>
                     <h3 class="text-3xl font-bold text-gray-100 mb-4">Skills & Technologies Applied</h3>
                     <div class="flex flex-wrap gap-3 mb-8">
                         <span class="bg-indigo-700 text-white text-lg font-medium px-4 py-1 rounded-full">C# / .NET 8</span>
+                        <span class="bg-indigo-700 text-white text-lg font-medium px-4 py-1 rounded-full">Blazor WebAssembly</span>
+                        <span class="bg-indigo-700 text-white text-lg font-medium px-4 py-1 rounded-full">.NET Entity Framework </span>
+                        <span class="bg-indigo-700 text-white text-lg font-medium px-4 py-1 rounded-full">ASP.NET Core Web API</span>
+                        <span class="bg-indigo-700 text-white text-lg font-medium px-4 py-1 rounded-full">Cloud Architecture</span>
+                        <span class="bg-indigo-700 text-white text-lg font-medium px-4 py-1 rounded-full">Containerization</span>
+                        <span class="bg-indigo-700 text-white text-lg font-medium px-4 py-1 rounded-full">Neon DB (PostgreSQL)</span>
                         <span class="bg-indigo-700 text-white text-lg font-medium px-4 py-1 rounded-full">Docker</span>
-                        <span class="bg-indigo-700 text-white text-lg font-medium px-4 py-1 rounded-full">Discord.Net API</span>
-                        <span class="bg-indigo-700 text-white text-lg font-medium px-4 py-1 rounded-full">JSON Persistence</span>
+                        <span class="bg-indigo-700 text-white text-lg font-medium px-4 py-1 rounded-full">OOP</span>
+                        <span class="bg-indigo-700 text-white text-lg font-medium px-4 py-1 rounded-full">Restful APIs</span>
+                        <span class="bg-indigo-700 text-white text-lg font-medium px-4 py-1 rounded-full">HTTP requests</span>
+                        <span class="bg-indigo-700 text-white text-lg font-medium px-4 py-1 rounded-full">Webhooks</span>
                     </div>
 
                     <h3 class="text-3xl font-bold text-gray-100 mb-4">Workflow & Tools</h3>
                     <div class="flex flex-wrap gap-3">
                         <span class="bg-gray-700 text-white text-lg font-medium px-4 py-1 rounded-full">Git + GitHub</span>
+                        <span class="bg-gray-700 text-white text-lg font-medium px-4 py-1 rounded-full">Obsidian</span>
+                        <span class="bg-gray-700 text-white text-lg font-medium px-4 py-1 rounded-full">GitHub Actions</span>
                         <span class="bg-gray-700 text-white text-lg font-medium px-4 py-1 rounded-full">Visual Studio</span>
+                        <span class="bg-gray-700 text-white text-lg font-medium px-4 py-1 rounded-full">Railway</span>
                         <span class="bg-gray-700 text-white text-lg font-medium px-4 py-1 rounded-full">Postman</span>
                     </div>
                 </div>
             </div>
 
-            <h3 class="text-3xl font-bold text-gray-100 mb-8 text-center">System Integration</h3>
+            <hr class="border-gray-800 my-12" />
 
-            <!-- Deployment Visuals -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                <div class="bg-gray-800 p-4 rounded-lg shadow-inner">
-                    <h4 class="text-xl font-semibold text-indigo-300 mb-3 text-center">Discord Live View</h4>
-                    <img src="../images/MCBot-Discord.png" alt="Bot running in Discord" class="w-full h-64 object-cover rounded-md cursor-pointer hover:opacity-90 transition-opacity">
-                    <p class="mt-3 text-sm text-gray-400 text-center italic">Live interaction showing the formatted status output in a server.</p>
-                </div>
-                <div class="bg-gray-800 p-4 rounded-lg shadow-inner">
-                    <h4 class="text-xl font-semibold text-indigo-300 mb-3 text-center">Docker Deployment</h4>
-                    <img src="../images/MCBot-docker.png" alt="Bot running in Docker" class="w-full h-64 object-cover rounded-md cursor-pointer hover:opacity-90 transition-opacity">
-                    <p class="mt-3 text-sm text-gray-400 text-center italic">The .NET 8 runtime environment containerized for consistent deployment.</p>
+            <h3 class="text-3xl font-bold text-gray-100 mb-8 text-center">Video Walkthrough</h3>
+            <div class="max-w-4xl mx-auto mb-16 shadow-2xl rounded-lg overflow-hidden border border-gray-800">
+                <div class="relative pb-[56.25%] h-0">
+                    <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/YOUR_YOUTUBE_VIDEO_ID" title="FPV Part Picker Demonstration" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-                <!-- Snippet 1: Setup Command -->
-                <div>
-                    <h4 class="text-xl font-semibold text-indigo-300 mb-2">Dynamic Configuration Interface</h4>
-                    <pre class="bg-gray-800 text-gray-100 p-4 rounded-md overflow-x-auto text-sm border border-gray-700"><code>
-[SlashCommand("setup", "Configure Minecraft settings")]
-public async Task SetupCommandAsync(
-    string serverName, string ip, ushort port = 25565)
-{
-    await DeferAsync(ephemeral: true);
-    // Persist settings to JSON via ConfigService
-    _configService.UpdateConfig(serverName, ip, port);
-    await FollowupAsync($"✅ **Settings Saved!** IP: `{ip}`");
-}
-                    </code></pre>
-                    <p class="mt-4 text-gray-300 text-sm leading-relaxed">
-                        This method allows admins to update the bot's target server IP and Port on the fly. The updated settings are passed to a configuration service which serializes them to a local JSON file, ensuring the bot remembers its setup even after a container reboot.
-                    </p>
-                </div>
+            <hr class="border-gray-800 my-12" />
 
-                <!-- Snippet 2: Status Logic -->
+            <h3 class="text-3xl font-bold text-gray-100 mb-8 text-center">System Integration & Deployment</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+                <div class="bg-gray-800 p-4 rounded-lg shadow-inner flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold text-indigo-300 mb-3 text-center">Application Dashboard</h4>
+                        <img src="../images/fpv-pp-dash.png" alt="FPV Part Picker Landing Dashboard" class="w-full h-48 object-cover rounded-md cursor-pointer hover:opacity-90 transition-opacity">
+                    </div>
+                    <p class="mt-3 text-sm text-gray-400 text-center italic">The primary interface for components tracking, custom builds creation, and live compatibility logging.</p>
+                </div>
+                <div class="bg-gray-800 p-4 rounded-lg shadow-inner flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold text-indigo-300 mb-3 text-center">Neon Cloud Database</h4>
+                        <img src="../images/fpv-pp-neon.png" alt="Neon PostgreSQL Database Console" class="w-full h-48 object-cover rounded-md cursor-pointer hover:opacity-90 transition-opacity">
+                    </div>
+                    <p class="mt-3 text-sm text-gray-400 text-center italic">Serverless PostgreSQL clustering on Neon DB managing component schemas and user-generated build configurations.</p>
+                </div>
+                <div class="bg-gray-800 p-4 rounded-lg shadow-inner flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold text-indigo-300 mb-3 text-center">Railway Cloud Engine</h4>
+                        <img src="../images/fpv-pp-railway.png" alt="Railway Deployment Infrastructure" class="w-full h-48 object-cover rounded-md cursor-pointer hover:opacity-90 transition-opacity">
+                    </div>
+                    <p class="mt-3 text-sm text-gray-400 text-center italic">Continuous automated container deployments linked directly with production code repositories via Docker.</p>
+                </div>
+            </div>
+
+            <hr class="border-gray-800 my-12" />
+
+            <h3 class="text-3xl font-bold text-gray-100 mb-8 text-center">Core Engineering Architecture</h3>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
                 <div>
-                    <h4 class="text-xl font-semibold text-indigo-300 mb-2">Dynamic Compatibility Checks</h4>
+                    <h4 class="text-xl font-semibold text-indigo-300 mb-2">Dynamic Configuration Rules</h4>
                     <pre class="bg-gray-800 text-gray-100 p-4 rounded-md overflow-x-auto text-sm border border-gray-700"><code>
 public static CompatibilityRule VoltageMatchingCheck => new()
 {
@@ -136,18 +148,24 @@ public static CompatibilityRule VoltageMatchingCheck => new()
         foreach (var part in parts)
         {
             var dynamicSpecs = SpecValidator.GetTypedSpecs(part);
-            // We use reflection or a shared interface to check 'MaxS' and 'MinS'
             var maxS = dynamicSpecs?.GetType().GetProperty("MaxS")?.GetValue(dynamicSpecs) as int?;
             var minS = dynamicSpecs?.GetType().GetProperty("MinS")?.GetValue(dynamicSpecs) as int?;
 
             if (maxS.HasValue && cellCount > maxS.Value) return false;
             if (minS.HasValue && cellCount < minS.Value) return false;
         }
-
         return true;
     }
 };
+                    </code></pre>
+                    <p class="mt-4 text-gray-300 text-sm leading-relaxed">
+                        This verification routine evaluates electrical loads across different parts. By accessing properties through runtime reflection, the rule evaluates safety parameters like cell counts (<code>MaxS</code> / <code>MinS</code>) without hardcoding explicit models for every single peripheral component type.
+                    </p>
+                </div>
 
+                <div>
+                    <h4 class="text-xl font-semibold text-indigo-300 mb-2">Video Protocol Interoperability</h4>
+                    <pre class="bg-gray-800 text-gray-100 p-4 rounded-md overflow-x-auto text-sm border border-gray-700"><code>
 public static CompatibilityRule VideoSystemMatch => new()
 {
     Name = "Video System Protocol",
@@ -163,33 +181,30 @@ public static CompatibilityRule VideoSystemMatch => new()
         var vSpecs = SpecValidator.GetTypedSpecs(vtx) as VTXSpecs;
         var cSpecs = SpecValidator.GetTypedSpecs(cam) as CameraSpecs;
 
-        // Check if one is Digital (O3/Vista/Walksnail) and the other is Analog
         return vSpecs?.Protocol == cSpecs?.Protocol;
     }
 };
                     </code></pre>
                     <p class="mt-4 text-gray-300 text-sm leading-relaxed">
-                        This method triggers the core logic of the bot: it pulls the saved configuration, queries the Minecraft server via a dedicated service, and returns the current player count and status directly to the Discord channel for all users to see.
+                        To guarantee structural signals are valid before physical assembly, this engine tracks mismatch states between digital and analog transmission lines. If a high-bandwidth digital system (e.g., DJI O3, Walksnail) is matched with legacy components, the builder is immediately alerted via production warning workflows.
                     </p>
                 </div>
             </div>
 
-            <div class="text-center mt-12">
-                <a href="https://github.com/Skyfall1235/AMinecraftServerDiscordBot" target="_blank" class="bg-indigo-600 text-white px-8 py-4 rounded-full text-xl font-semibold shadow-md hover:bg-indigo-700 transform hover:scale-105 transition-all duration-300 inline-flex items-center">
-                    View Project on GitHub
-                    <svg class="ml-3 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                </a>
+            <div class="text-center mt-12 bg-gray-800 p-4 rounded-lg inline-block mx-auto w-full max-w-md border border-gray-700">
+                <p class="text-indigo-300 font-semibold">
+                    🔒 Project source code repository is currently private.
+                </p>
             </div>
+            
         </article>
     </main>
 
-    <!-- Image Modal (Lightbox) -->
     <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
         <button id="closeModal" class="absolute top-4 right-4 text-white text-3xl font-bold p-2 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors">&times;</button>
         <img id="modalImage" class="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-xl" src="" alt="Zoomed Image">
     </div>
 
-    <!-- Footer Section -->
     <footer class="bg-gray-900 text-white py-8 mt-8 rounded-t-lg">
         <div class="container mx-auto px-4 text-center text-gray-400">
             <p>&copy; <span id="current-year-footer"></span> Wyatt Murray. All rights reserved.</p>
@@ -226,28 +241,3 @@ public static CompatibilityRule VideoSystemMatch => new()
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
